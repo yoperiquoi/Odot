@@ -3,11 +3,11 @@
 
 class Tache{
     public string $Nom;
-    public int $Effectue;
+    public bool $Effectue;
 
-    function __construct(string $Nom){
+    function __construct(string $Nom, bool $Effectue){
         $this->Nom=$Nom;
-        $this->Effectue=false;
+        $this->Effectue=$Effectue;
     }
 
     function cocher(){

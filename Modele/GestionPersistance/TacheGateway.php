@@ -13,6 +13,14 @@ class TacheGateway
         $this->con=$c;
     }
 
+    public function ajoutTache(string $nom) {
+        try {
+            $query='INSERT INTO Tache values (:nom, false)';
+            $this->con->executeQuery($query,array(':nom' => array($nom, PDO::PARAM_STR)));
+        } catch (Exception $e) {
+        }
+    }
+
     public function findAllTaches():array{
         $query='SELECT * FROM Tache';
         $this->con->executeQuery($query,array());
