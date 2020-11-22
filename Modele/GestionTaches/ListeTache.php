@@ -1,0 +1,20 @@
+<?php
+
+
+class ListeTache
+{
+    private $Titre;
+    public $Taches;
+
+    function __construct(string $Titre,array $Taches){
+        $this->Titre=$Titre;
+        foreach ($Taches as $value){
+            $this->Titre=$Titre;
+            $this->Taches[]=new Tache($value->Nom,$value->Effectue);
+        }
+    }
+
+    function __ToString():string{
+        return $this->Titre;
+    }
+}
