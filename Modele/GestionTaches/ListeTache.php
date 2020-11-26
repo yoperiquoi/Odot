@@ -9,7 +9,6 @@ class ListeTache
     function __construct(string $Titre,array $Taches){
         $this->Titre=$Titre;
         foreach ($Taches as $value){
-            $this->Titre=$Titre;
             $this->Taches[]=new Tache($value->Nom,$value->Effectue);
         }
     }

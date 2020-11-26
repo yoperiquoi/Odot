@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PageConnexion/PageConnexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/PageConnexion/PageConnexion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/TacheGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modele/GestionPersistance/TacheGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/ListeTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modele/GestionTaches/ListeTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Vue/PagePrincipale/PagePrincipale.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1kSOJmr6cnT43futVieA544WSN6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,7 +55,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tp1" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -71,7 +74,10 @@
       <workItem from="1605809698354" duration="3284000" />
       <workItem from="1605877084479" duration="67000" />
       <workItem from="1605888656648" duration="8050000" />
-      <workItem from="1605898893453" duration="706000" />
+      <workItem from="1605898893453" duration="869000" />
+      <workItem from="1605955933473" duration="21708000" />
+      <workItem from="1606393570780" duration="632000" />
+      <workItem from="1606394386967" duration="5572000" />
     </task>
     <servers />
   </component>
@@ -91,13 +97,27 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605877149103">
+    <state x="475" y="55" key="#PHP" timestamp="1605956122604">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="475" y="55" key="#PHP/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605956122604" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606393899727">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606393899727" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605963318385">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605963318385" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605877149103" />
-    <state x="604" y="335" key="NewPhpFileDialog" timestamp="1605692748626">
+    <state x="531" y="135" key="NewPhpClassDialog" timestamp="1605963885154">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="531" y="135" key="NewPhpClassDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605963885154" />
+    <state x="604" y="335" key="NewPhpFileDialog" timestamp="1605974364897">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605974364897" />
     <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1605692748626" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1605775820306">
       <screen x="0" y="0" width="1536" height="824" />

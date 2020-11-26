@@ -6,7 +6,6 @@ include_once "../../Modele/GestionTaches/ListeTache.php";
 class TacheGateway
 {
     private $con;
-    private $TU;
 
     public function __construct($c)
     {
@@ -83,9 +82,9 @@ class TacheGateway
         $this->con->executeQuery($query,array(':nom' => array($nom, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
-            $this->TU= new Tache($row['Nom'],$row["Effectue"]);
+            $TU= new Tache($row['Nom'],$row['Effectue']);
         }
-        return $this->TU;
+        return $TU;
     }
 
 }
