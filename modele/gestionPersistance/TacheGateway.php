@@ -1,7 +1,7 @@
 <?php
 
-include_once "../../Modele/GestionTaches/Tache.php";
-include_once "../../Modele/GestionTaches/ListeTache.php";
+include_once (__DIR__."../../modele/gestionTaches/Tache.php");
+include_once (__DIR__."../../modele/gestionTaches/ListeTache.php");
 
 class TacheGateway
 {
@@ -37,6 +37,7 @@ class TacheGateway
         $query='SELECT * FROM ListesPublique';
         $this->con->executeQuery($query,array());
         $results=$this->con->getResults();
+        if($results==NULL)return array();
         foreach ($results as $row){
             $Titre=$row['Titre'];
             $query='SELECT * FROM ListeTachePublic where IdListePublique=:id';
@@ -107,11 +108,16 @@ class TacheGateway
         $query='SELECT IdListePublique FROM ListesPublique WHERE IdListePublique=(SELECT MAX(IdListePublique) FROM ListesPublique)';
         $this->con->executeQuery($query,array());
         $result=$this->con->getResults();
-        foreach ($result as $value){
-            $Id=$value['IdListePublique']+1;
-            $query='INSERT INTO ListesPublique VALUES(:id,:nom)';
-            $this->con->executeQuery($query,array(':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
+        if($result==NULL){
+            $Id=1;
         }
+        else {
+            foreach ($result as $value) {
+                $Id = $value['IdListePublique'] + 1;
+            }
+        }
+        $query='INSERT INTO ListesPublique VALUES(:id,:nom)';
+        $this->con->executeQuery($query,array(':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
     }
 
     public function findTache(string $nom): Tache{

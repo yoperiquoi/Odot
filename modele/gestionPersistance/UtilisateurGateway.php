@@ -1,8 +1,8 @@
 <?php
 
-include_once "../../Modele/GestionUtilisateur/Utilisateur.php";
-include_once "../../Modele/GestionTaches/ListeTache.php";
-include_once "../../Modele/GestionTaches/Tache.php";
+include_once (__DIR__."/../../modele/gestionUtilisateur/Utilisateur.php");
+include_once (__DIR__."/../../modele/gestionTaches/ListeTache.php");
+include_once (__DIR__."/../../modele/gestionTaches/Tache.php");
 
 class UtilisateurGateway
 {
@@ -30,10 +30,11 @@ class UtilisateurGateway
         $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR),':mdp' => array($mdp, PDO::PARAM_STR),':pseudonyme'=>(array($pseudonyme,PDO::PARAM_STR))));
     }
 
-    public function findAllListesUtilisateur(string $email){
+    public function findAllListesUtilisateur(string $email):array{
         $query='SELECT IdListeTache,Titre FROM ListesTaches WHERE Email=:email';
         $this->con->executeQuery($query,array(':email'=> array($email,PDO::PARAM_STR)));
         $results=$this->con->getResults();
+        if($results==NULL)return array();
         foreach ($results as $row){
             $Titre=$row['Titre'];
             $query='SELECT * FROM ListeTachePrivee where IdListeTachesPrivee=:id';
@@ -47,7 +48,11 @@ class UtilisateurGateway
                     $Taches[]=new Tache($value['Nom'],$value['Effectue']);
                 }
             }
-            $ListesTachesPrivee[]=new ListeTache($Titre,$Taches);
+            if(empty($Taches)){
+                $ListesTachesPrivee[]=new ListeTache($Titre,$Taches=[]);
+            }else{
+                $ListesTachesPrivee[]=new ListeTache($Titre,$Taches);
+            }
             $Taches=[];
         }
         return $ListesTachesPrivee;
@@ -97,10 +102,11 @@ class UtilisateurGateway
 
         $query = 'DELETE FROM TachePrivee where nom=:nom';
         return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
+        return TRUE;
     }
 
     public function delListe(string $nom,string $email){
-        $query='SELECT IdListePrivee FROM ListesTaches where Titre=:nom and Email=:email';
+        $query='SELECT IdListeTache FROM ListesTaches where Titre=:nom and Email=:email';
         $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR),':email' => array($email,PDO::PARAM_STR)));
         $result=$this->con->getResults();
         foreach ($result as $value){
@@ -117,7 +123,7 @@ class UtilisateurGateway
                 $this->delTache($nom['Nom']);
             }
         }
-        $query='DELETE FROM ListesTache WHERE IdListeTache=:IdListe';
+        $query='DELETE FROM ListesTaches WHERE IdListeTache=:IdListe';
         $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
     }
 
@@ -125,10 +131,13 @@ class UtilisateurGateway
         $query='SELECT IdListeTache FROM ListesTaches WHERE IdListeTache=(SELECT MAX(IdListeTache) FROM ListesTaches)';
         $this->con->executeQuery($query,array());
         $result=$this->con->getResults();
+        if($result==NULL){
+            $Id=1;
+        }
         foreach ($result as $value){
             $Id=$value['IdListeTache']+1;
-            $query='INSERT INTO ListesTaches VALUES(:id,:email,:nom)';
-            $this->con->executeQuery($query,array(':email' => array($email,PDO::PARAM_STR),':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
         }
+        $query='INSERT INTO ListesTaches VALUES(:id,:email,:nom)';
+        $this->con->executeQuery($query,array(':email' => array($email,PDO::PARAM_STR),':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
     }
 }

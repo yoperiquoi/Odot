@@ -1,5 +1,5 @@
 $('#delete').click(function() {
-    var url = '../../Modele/GestionTaches/SupprimerTache.php';
+    var url = '../../modele/gestionTaches/SupprimerTache.php';
     $(this).slideUp();
     $.post(url);
 });

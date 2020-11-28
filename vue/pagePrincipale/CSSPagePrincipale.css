@@ -19,3 +19,6 @@ input[type="checkbox"]:checked {
     left: 0
 }
 
+.bg {
+    background-color: ghostwhite;
+}

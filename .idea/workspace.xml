@@ -19,11 +19,35 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="">
+    <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
+      <change afterPath="$PROJECT_DIR$/controleur/Controleur.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/TacheGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modele/GestionPersistance/TacheGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/ListeTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modele/GestionTaches/ListeTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Vue/PagePrincipale/PagePrincipale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionPersistance/Connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/TacheGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionPersistance/TacheGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/UtilisateurGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionPersistance/UtilisateurGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/AjouterListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/AjouterListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/AjouterTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/AjouterTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/ListeTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/ListeTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/SupprimerListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/SupprimerListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/SupprimerTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/SupprimerTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/Tache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/Tache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/AjouterListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/AjouterTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/AjouterUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterUtilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/SupprimerListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/SupprimerListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/SupprimerTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/SupprimerTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/TrouverUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/TrouverUtilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/Utilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PageConnexion/CSSPageConnexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/CSSPageConnexion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PageConnexion/PageConnexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/PageConnexion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PageInscription/CSSPageInscription.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/CSSPageInscription.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PageInscription/PageIncription.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/PageInscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/CSSPagePrincipale.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/CSSPagePrincipale.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/JSPagePrincipale.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue/PagePrivee/PagePrivee.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controleur/Validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Validation.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +79,13 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tp1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mvc1" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\odot\config" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -74,11 +103,17 @@
       <workItem from="1605809698354" duration="3284000" />
       <workItem from="1605877084479" duration="67000" />
       <workItem from="1605888656648" duration="8050000" />
-      <workItem from="1605898893453" duration="869000" />
-      <workItem from="1605955933473" duration="21708000" />
-      <workItem from="1606393570780" duration="632000" />
-      <workItem from="1606394386967" duration="5572000" />
+      <workItem from="1605898893453" duration="706000" />
+      <workItem from="1606571507945" duration="16781000" />
     </task>
+    <task id="LOCAL-00001" summary="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
+      <created>1606528563454</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606528563454</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,40 +131,46 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout fonctionnalitées ajouter/supprimer liste publique/privée." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout fonctionnalitées ajouter/supprimer liste publique/privée." />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="475" y="55" key="#PHP" timestamp="1605956122604">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="667" y="163" key="#PHP" timestamp="1606520953711">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="475" y="55" key="#PHP/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605956122604" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606393899727">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="667" y="163" key="#PHP/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606520953711" />
+    <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1606574792256">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606393899727" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605963318385">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605963318385" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605877149103" />
-    <state x="531" y="135" key="NewPhpClassDialog" timestamp="1605963885154">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606574792256" />
+    <state x="-896" y="327" key="NewPhpClassDialog" timestamp="1606574964359">
+      <screen x="-1440" y="174" width="1440" height="860" />
     </state>
-    <state x="531" y="135" key="NewPhpClassDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605963885154" />
-    <state x="604" y="335" key="NewPhpFileDialog" timestamp="1605974364897">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-896" y="327" key="NewPhpClassDialog/0.0.1920.1040/-1440.174.1440.860@-1440.174.1440.860" timestamp="1606574964359" />
+    <state x="-874" y="524" key="NewPhpFileDialog" timestamp="1606574987411">
+      <screen x="-1440" y="174" width="1440" height="860" />
     </state>
-    <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1605974364897" />
     <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1605692748626" />
+    <state x="-874" y="524" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@-1440.174.1440.860" timestamp="1606574987411" />
+    <state x="755" y="423" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606525654563" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1605775820306">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1605775820306" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605794382725">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606528567656">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605794382725" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606528567656" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605707716363">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605707716363" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1606523647504">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606523647504" />
   </component>
 </project>
