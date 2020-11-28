@@ -50,7 +50,11 @@ class TacheGateway
                     $Taches[]=new Tache($value['Nom'],$value['Effectue']);
                 }
             }
-            $ListesTachesPublique[]=new ListeTache($Titre,$Taches);
+            if(empty($Taches)){
+                $ListesTachesPublique[]=new ListeTache($Titre,$Taches=[]);
+            }else{
+                $ListesTachesPublique[]=new ListeTache($Titre,$Taches);
+            }
             $Taches=[];
         }
         return $ListesTachesPublique;
@@ -70,11 +74,44 @@ class TacheGateway
         return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
     }
 
+    public function delListe(string $nom){
+        $query='SELECT IdListePublique FROM ListesPublique where Titre=:nom';
+        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
+        $result=$this->con->getResults();
+        foreach ($result as $value){
+            $IdListe=$value['IdListePublique'];
+        }
+        $query='SELECT IdTache FROM ListeTachePublic where IdListePublique=:IdListe';
+        $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
+        $result=$this->con->getResults();
+        foreach ($result as $value){
+            $query='SELECT Nom from Tache WHERE IdTache=:IdTache';
+            $this->con->executeQuery($query, array(':IdTache' => array($value['IdTache'],PDO::PARAM_STR)));
+            $results=$this->con->getResults();
+            foreach ($results as $nom){
+                $this->delTache($nom['Nom']);
+            }
+        }
+        $query='DELETE FROM ListesPublique WHERE IdListePublique=:IdListe';
+        $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
+    }
+
     public function nbTaches(){
         $query='SELECT count(*) FROM Tache';
         $this->con->executeQuery($query,array());
         $results=$this->con->getResults();
         return $results[0]['count(*)'];
+    }
+
+    public function ajouterListe(string $nom){
+        $query='SELECT IdListePublique FROM ListesPublique WHERE IdListePublique=(SELECT MAX(IdListePublique) FROM ListesPublique)';
+        $this->con->executeQuery($query,array());
+        $result=$this->con->getResults();
+        foreach ($result as $value){
+            $Id=$value['IdListePublique']+1;
+            $query='INSERT INTO ListesPublique VALUES(:id,:nom)';
+            $this->con->executeQuery($query,array(':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
+        }
     }
 
     public function findTache(string $nom): Tache{

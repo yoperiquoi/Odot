@@ -98,4 +98,37 @@ class UtilisateurGateway
         $query = 'DELETE FROM TachePrivee where nom=:nom';
         return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
     }
+
+    public function delListe(string $nom,string $email){
+        $query='SELECT IdListePrivee FROM ListesTaches where Titre=:nom and Email=:email';
+        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR),':email' => array($email,PDO::PARAM_STR)));
+        $result=$this->con->getResults();
+        foreach ($result as $value){
+            $IdListe=$value['IdListeTache'];
+        }
+        $query='SELECT IdTache FROM ListeTachePrivee where IdListeTachesPrivee=:IdListe';
+        $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
+        $result=$this->con->getResults();
+        foreach ($result as $value){
+            $query='SELECT Nom from TachePrivee WHERE IdTache=:IdTache';
+            $this->con->executeQuery($query, array(':IdTache' => array($value['IdTache'],PDO::PARAM_STR)));
+            $results=$this->con->getResults();
+            foreach ($results as $nom){
+                $this->delTache($nom['Nom']);
+            }
+        }
+        $query='DELETE FROM ListesTache WHERE IdListeTache=:IdListe';
+        $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
+    }
+
+    public function ajouterListe(string $nom,string $email){
+        $query='SELECT IdListeTache FROM ListesTaches WHERE IdListeTache=(SELECT MAX(IdListeTache) FROM ListesTaches)';
+        $this->con->executeQuery($query,array());
+        $result=$this->con->getResults();
+        foreach ($result as $value){
+            $Id=$value['IdListeTache']+1;
+            $query='INSERT INTO ListesTaches VALUES(:id,:email,:nom)';
+            $this->con->executeQuery($query,array(':email' => array($email,PDO::PARAM_STR),':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
+        }
+    }
 }

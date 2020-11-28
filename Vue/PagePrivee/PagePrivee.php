@@ -44,12 +44,25 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
         </ul>
     </div>
 </nav>
+
+<div class="container">
+    <form action='../../Modele/GestionUtilisateur/AjouterListe.php' class='d-flex col-12 p-3' method='POST'>
+        <input type='text' name='AjoutListe' class='form-control todo-list-input mr-1' placeholder='Nouvelle Liste'>
+        <button type='submit' class='btn btn-primary'>Ajouter</button>
+    </form>
+</div>
 <main role='main' class='container bg-white py-2 px-5 border my-5'>
     <?php
     $Gateway=new UtilisateurGateway(new Connection($dsn,$user,$pass));
     $ListesPrivee=$Gateway->findAllListesUtilisateur("yoann_63115@hotmail.fr");
     foreach ($ListesPrivee as $ListePrivee){
         print"
+        <form method='post' action='../../Modele/GestionUtilisateur/SupprimerListe.php'>
+            <input type='text' name='NomListe' value='$ListePrivee' hidden>
+            <button id='delete' class='close justify-content-end col-sm1' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+            </button>
+        </form>
         <h5 class='mt-3 ml-3 col-sm-10'>$ListePrivee</h5>
         <form action='../../Modele/GestionUtilisateur/AjouterTache.php' class='d-flex col-12 p-3' method='POST'>
             <input type='hidden' name='Liste' value='$ListePrivee'/>
@@ -58,11 +71,11 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
         </form>
     
         <ul class='list-unstyled shadow-sm mb-1'>";
-
-        $TachesPrivee=$ListePrivee->Taches;
-        foreach ($TachesPrivee as $Tache) {
-            if ($Tache->Effectue == false) {
-                print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
+        if($ListePrivee->Taches!=NULL) {
+            $TachesPrivee = $ListePrivee->Taches;
+            foreach ($TachesPrivee as $Tache) {
+                if ($Tache->Effectue == false) {
+                    print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
                 <input type='checkbox' class='ml-4'>
                 <label class='ml-2 pt-1 label-list col-sm-10'>$Tache</label>
                 <form method='post' action='../../Modele/GestionUtilisateur/SupprimerTache.php'>
@@ -72,8 +85,8 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
                 </button>
                 </form>
                 </li>";
-            } else {
-                print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
+                } else {
+                    print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
                 <input type='checkbox' class='ml-4' checked>
                 <label class='ml-2 pt-1 label-list col-sm-10'>$Tache</label>
                 <form method='post' action='../../Modele/GestionUtilisateur/SupprimerTache.php'>
@@ -84,6 +97,7 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
                 </form>
                 </li>
                 </ul>";
+                }
             }
         }
     }

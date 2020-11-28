@@ -50,6 +50,12 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
         </a>
     </div>
 </nav>
+<div class="container">
+    <form action='../../Modele/GestionTaches/AjouterListe.php' class='d-flex col-12 p-3' method='POST'>
+    <input type='text' name='AjoutListe' class='form-control todo-list-input mr-1' placeholder='Nouvelle Liste'>
+    <button type='submit' class='btn btn-primary'>Ajouter</button>
+    </form>
+</div>
 <main role='main' class='container bg-white py-2 px-5 border my-5'>
 <?php
         $Gateway=new TacheGateway(new Connection($dsn,$user,$pass));
@@ -60,8 +66,13 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
         }
 
         foreach ($ListesPublique as $ListePublique){
-
             print"
+            <form method='post' action='../../Modele/GestionTaches/SupprimerListe.php'>
+                    <input type='text' name='NomListe' value='$ListePublique' hidden>
+                    <button id='delete' class='close justify-content-end col-sm1' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+            </form>
             <h5 class='mt-3 ml-3 col-sm-10'>$ListePublique</h5>
             <form action='../../Modele/GestionTaches/AjouterTache.php' class='d-flex col-12 p-3' method='POST'>
                 <input type='hidden' name='Liste' value='$ListePublique'/>
@@ -70,7 +81,7 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
             </form>
         
             <ul class='list-unstyled shadow-sm mb-1'>";
-
+            if($ListePublique->Taches!=NULL){
             $TachesPublique=$ListePublique->Taches;
             foreach ($TachesPublique as $Tache) {
                 if ($Tache->Effectue == false) {
@@ -97,6 +108,7 @@ $dsn='mysql:host=localhost;dbname=OdotTest';
                     </li>
                     </ul>";
                 }
+            }
             }
         }
         ?>

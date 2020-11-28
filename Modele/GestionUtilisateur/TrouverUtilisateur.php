@@ -13,7 +13,6 @@ $Gateway = new UtilisateurGateway(new Connection($dsn, $user, $pass));
 
 $Utilisateur=$Gateway->findUtilisateur($Email, $Mdp);
 
-session_id($Utilisateur->Email);
 session_start();
 $_SESSION['Utilisateur']=$Utilisateur->Email;
 
