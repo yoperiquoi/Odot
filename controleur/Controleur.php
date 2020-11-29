@@ -1,7 +1,10 @@
 <?php
+//On récupére les identifiant et les localisation de la base de données
 $user = 'root';
 $pass = '';
 $dsn = 'mysql:host=localhost;dbname=OdotTest';
+
+//On require tout ce qui se trouve dans le métier et le fichier de configuration
 
 require_once(__DIR__ . "/../modele/gestionPersistance/Connection.php");
 require_once(__DIR__ . "/../modele/gestionTaches/Tache.php");
@@ -10,14 +13,19 @@ require_once(__DIR__ . "/../modele/gestionPersistance/UtilisateurGateway.php");
 require_once(__DIR__ . "/../modele/gestionTaches/ListeTache.php");
 require_once(__DIR__ . "/../modele/gestionUtilisateur/Utilisateur.php");
 require_once(__DIR__ . '/../config/Validation.php');
+//On instancie un tableau d'erreur
 $TabErreur=array();
 
+
 try{
+    //Je récupére l'action
     $action=$_REQUEST['action'];
-    print"$action";
+    //Instancie les deux gateways responsable de la gestion des taches et des utilisateurs
     $Gateway=new TacheGateway(new Connection($dsn,$user,$pass));
     $GatewayPrivee=new UtilisateurGateway(new Connection($dsn,$user,$pass));
+    //Je récupére les taches publiques
     $ListesPublique=$Gateway->findAllListes();
+    //En fonction de l'action j'exécute différents scripts et j'affiche des vues
     switch($action) {
 
         case NULL:
@@ -98,12 +106,15 @@ try{
             require('../vue/pagePrivee/PagePrivee.php');
             break;
 
-//mauvaise action
+        //Si mauvaise action
         default:
-            $dataVueErreur[] =	"Erreur d'appel php";
+            $dataVueErreur[] =	"Erreur d'appel php !";
             require (__DIR__.'../../vue/pagePrincipale/PagePrincipale.php');
             break;
     }
-}catch (Exception $e2){
-    $TabErreur[]="Erreur métier ! ";
+}catch (Exception $e2){ // Récupération des erreur venant du modèle et de l'interaction avec la BDD
+    $dataVueErreur[]="Erreur métier ! ";
+}catch (PDOException $e) {
+    $dataVueErreur[] = "Erreur BDD ! ";
+    require(__DIR__."/../../vue/pageErreur/PageErreur.php");
 }
