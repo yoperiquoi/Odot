@@ -1,7 +1,10 @@
 <?php
 
-include_once (__DIR__."../../modele/gestionTaches/Tache.php");
-include_once (__DIR__."../../modele/gestionTaches/ListeTache.php");
+namespace modeles\gestionPersistance;
+
+use modeles\gestionTaches\Tache;
+use modeles\gestionTaches\ListeTache;
+use PDO;
 
 class TacheGateway
 {

@@ -1,5 +1,10 @@
 <?php
-class Connection extends PDO { 
+
+namespace modeles\gestionPersistance;
+
+use PDO;
+
+class Connection extends PDO {
 
 private $stmt;
 

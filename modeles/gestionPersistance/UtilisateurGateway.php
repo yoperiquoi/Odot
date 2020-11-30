@@ -1,8 +1,11 @@
 <?php
 
-include_once (__DIR__."/../../modele/gestionUtilisateur/Utilisateur.php");
-include_once (__DIR__."/../../modele/gestionTaches/ListeTache.php");
-include_once (__DIR__."/../../modele/gestionTaches/Tache.php");
+namespace modeles\gestionPersistance;
+
+use modeles\gestionUtilisateur\Utilisateur;
+use modeles\gestionTaches\ListeTache;
+use modeles\gestionTaches\Tache;
+use PDO;
 
 class UtilisateurGateway
 {

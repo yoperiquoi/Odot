@@ -10,12 +10,12 @@
     <meta name="generator" content="Jekyll v4.1.1">
     <title>Odot</title>
 
-    <link href="../BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="../../Images/OdotShortcut.jpg">
+    <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/jpg" href="Images/OdotShortcut.jpg">
 
     <meta name="theme-color" content="#563d7c">
 
-    <link href="CSSPagePrincipale.css" rel="stylesheet">
+    <link href="vue/PagePrincipale/CSSPagePrincipale.css" rel="stylesheet">
 
 
 </head>
@@ -36,8 +36,8 @@
                 <a class="nav-link" href="?action=pagePrivée" tabindex="-1" aria-disabled="true">Privé</a>
             </li>
         </ul>
-        <a href="?action=pageConnection" class="form-inline mt-2 mt-md-0">
-            <label class="mr-sm-2 text-light">Invité</label>
+        <label class="mr-sm-2 text-light mt-2">Invité</label>
+        <a href="?action=pageConnection" class="form-inline mt-2 mt-md-0" style="text-decoration: none">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se connecter</button>
         </a>
     </div>
@@ -48,7 +48,9 @@
         <input type='text' name='AjoutListe' class='form-control todo-list-input mr-1' placeholder='Nouvelle Liste'>
         <button type='submit' name="action" value="ajouterListePublique" class='btn btn-primary'>Ajouter</button>
     </form>
+    <p class="m-0 ml-5 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurListe']) ? $dataVueErreur['erreurTache'] : ""; ?></p>
 </main>
+<p class="m-0 ml-5 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurTache']) ? $dataVueErreur['erreurTache'] : ""; ?></p>
 <main role='main' class='container bg-white py-2 px-5 border '>
 <?php
         if($ListesPublique!=NULL) {

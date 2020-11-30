@@ -1,5 +1,6 @@
 <?php
 
+namespace modeles\gestionTaches;
 
 class ListeTache
 {

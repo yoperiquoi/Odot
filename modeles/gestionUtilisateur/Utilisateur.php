@@ -1,5 +1,6 @@
 <?php
 
+namespace modeles\gestionUtilisateur;
 
 class Utilisateur
 {

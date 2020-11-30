@@ -9,8 +9,8 @@
     <meta name="generator" content="Jekyll v4.1.1">
     <title>Odot</title>
 
-    <link href="../BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="../../Images/OdotShortcut.jpg">
+    <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/jpg" href="Images/OdotShortcut.jpg">
 
     <meta name="theme-color" content="#563d7c">
 
@@ -30,7 +30,7 @@
                 <a class="nav-link " href="?action=NULL">Publique</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link " href="?action=pagePrivee" tabindex="-1" aria-disabled="true">Privé<span class="sr-only">(current)</span></a>
+                <a style="text-decoration: none" class="nav-link " href="?action=pagePrivee" tabindex="-1" aria-disabled="true">Privé<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>

@@ -9,15 +9,15 @@
     <title>Inscription Odot</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="../Images/OdotLogo.jpg">
+    <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/jpg" href="Images/OdotLogo.jpg">
 
 
     <meta name="theme-color" content="#563d7c">
 
 
     <!-- Custom styles for this template -->
-    <link href="CSSPageInscription.css" rel="stylesheet">
+    <link href="vue/PageInscription/CSSPageInscription.css" rel="stylesheet">
 </head>
 <body>
 
@@ -35,22 +35,22 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Privé</a>
             </li>
         </ul>
-        <a href="?action=pageConnection" class="form-inline mt-2 mt-md-0">
-            <label class="mr-sm-2 text-light">Invité</label>
+        <label class="mr-sm-2 text-light mt-2">Invité</label>
+        <a href="?action=pageConnection" class="form-inline mt-2 mt-md-0" style="text-decoration: none">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se connecter</button>
         </a>
     </div>
 </nav>
 <main role='main' class='container bg-white py-2 px-5 border my-5  p-5 text-center'>
     <form class="form-signin" method="POST" >
-        <img class="mb-4" src="../Images/OdotLogo.jpg" alt="" width="75" height="75">
+        <img class="mb-4" src="Images/OdotLogo.jpg" alt="" width="75" height="75">
         <h1 class="h3 mb-3 font-weight-normal">Inscrivez-vous !</h1>
         <label for="inputEmail" class="sr-only">Adresse mail</label>
         <input type="email" name="inputEmail" class="form-control mb-1 todo-list-input" placeholder="Adresse mail" required autofocus/>
         <input type="text" name="inputPseudo" class="form-control mb-1 todo-list-input" placeholder="Pseudonyme" required autofocus/>
         <label for="inputPassword" class="sr-only">Mot de passe</label>
         <input type="password" name="inputPassword" class="form-control mb-1 todo-list-input" placeholder="Mot de passe" required/>
-        <button class="btn btn-lg btn-primary btn-block" name="action" value="créerUtilisateur" type="submit">S'incrire</button>
+        <button class="btn btn-lg btn-primary btn-block" name="action" value="creerUtilisateur" type="submit">S'incrire</button>
     </form>
 </main>
 </body>

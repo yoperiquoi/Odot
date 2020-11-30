@@ -20,34 +20,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
-      <change afterPath="$PROJECT_DIR$/controleur/Controleur.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/Autoload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/SplClassLoader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionPersistance/Connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/TacheGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionPersistance/TacheGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionPersistance/UtilisateurGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionPersistance/UtilisateurGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/AjouterListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/AjouterListe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/AjouterTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/AjouterTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/ListeTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/ListeTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/SupprimerListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/SupprimerListe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/SupprimerTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/SupprimerTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionTaches/Tache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionTaches/Tache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/AjouterListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterListe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/AjouterTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/AjouterUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterUtilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/SupprimerListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/SupprimerListe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/SupprimerTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/SupprimerTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/TrouverUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/TrouverUtilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modele/GestionUtilisateur/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modele/gestionUtilisateur/Utilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PageConnexion/CSSPageConnexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/CSSPageConnexion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PageConnexion/PageConnexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/PageConnexion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PageInscription/CSSPageInscription.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/CSSPageInscription.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PageInscription/PageIncription.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/PageInscription.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/CSSPagePrincipale.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/CSSPagePrincipale.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/JSPagePrincipale.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue/PagePrivee/PagePrivee.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controleur/Validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controleur/Controleur.php" beforeDir="false" afterPath="$PROJECT_DIR$/controleur/Controleur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionPersistance/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/Connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionPersistance/TacheGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/TacheGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionPersistance/UtilisateurGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/UtilisateurGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionTaches/AjouterListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionTaches/AjouterListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionTaches/AjouterTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionTaches/AjouterTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionTaches/ListeTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionTaches/ListeTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionTaches/SupprimerListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionTaches/SupprimerListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionTaches/SupprimerTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionTaches/SupprimerTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionTaches/Tache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionTaches/Tache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/AjouterListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/AjouterTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/AjouterUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/AjouterUtilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/SupprimerListe.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/SupprimerListe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/SupprimerTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/SupprimerTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/TrouverUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/TrouverUtilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modele/gestionUtilisateur/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionUtilisateur/Utilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pageConnexion/CSSPageConnexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/CSSPageConnexion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pageConnexion/PageConnexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/PageConnexion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pageInscription/PageInscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/PageInscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +80,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mvc1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -105,6 +106,11 @@
       <workItem from="1605888656648" duration="8050000" />
       <workItem from="1605898893453" duration="706000" />
       <workItem from="1606571507945" duration="16781000" />
+      <workItem from="1606631265528" duration="6333000" />
+      <workItem from="1606647100340" duration="379000" />
+      <workItem from="1606662034783" duration="4771000" />
+      <workItem from="1606667005912" duration="1217000" />
+      <workItem from="1606673447949" duration="12827000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
       <created>1606528563454</created>
@@ -140,19 +146,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="163" key="#PHP/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606520953711" />
-    <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1606574792256">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606634850378">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605877149103" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1606634850378" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1606674341559">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1606674341559" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606662061988" />
     <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606574792256" />
-    <state x="-896" y="327" key="NewPhpClassDialog" timestamp="1606574964359">
-      <screen x="-1440" y="174" width="1440" height="860" />
+    <state x="580" y="147" key="NewPhpClassDialog" timestamp="1606662110419">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="580" y="147" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1606662110419" />
     <state x="-896" y="327" key="NewPhpClassDialog/0.0.1920.1040/-1440.174.1440.860@-1440.174.1440.860" timestamp="1606574964359" />
-    <state x="-874" y="524" key="NewPhpFileDialog" timestamp="1606574987411">
-      <screen x="-1440" y="174" width="1440" height="860" />
+    <state x="604" y="335" key="NewPhpFileDialog" timestamp="1606635109727">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1605692748626" />
+    <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1606635109727" />
     <state x="-874" y="524" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@-1440.174.1440.860" timestamp="1606574987411" />
     <state x="755" y="423" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606525654563" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1605775820306">
