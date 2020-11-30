@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/config/Autoload.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config/SplClassLoader.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
@@ -49,6 +50,13 @@
       <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/vue/pageErreur/PageErreur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controleur/Controleur.php" beforeDir="false" afterPath="$PROJECT_DIR$/controleur/Controleur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
+>>>>>>> 77fbfb8529bf6554e5deceea94ca12db8a7ed688
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +88,11 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mvc2_autoloadsimple" />
+>>>>>>> 77fbfb8529bf6554e5deceea94ca12db8a7ed688
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -106,11 +118,15 @@
       <workItem from="1605888656648" duration="8050000" />
       <workItem from="1605898893453" duration="706000" />
       <workItem from="1606571507945" duration="16781000" />
+<<<<<<< HEAD
       <workItem from="1606631265528" duration="6333000" />
       <workItem from="1606647100340" duration="379000" />
       <workItem from="1606662034783" duration="4771000" />
       <workItem from="1606667005912" duration="1217000" />
       <workItem from="1606673447949" duration="12827000" />
+=======
+      <workItem from="1606663111207" duration="3978000" />
+>>>>>>> 77fbfb8529bf6554e5deceea94ca12db8a7ed688
     </task>
     <task id="LOCAL-00001" summary="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
       <created>1606528563454</created>
@@ -146,6 +162,7 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="163" key="#PHP/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606520953711" />
+<<<<<<< HEAD
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606634850378">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -158,15 +175,29 @@
     <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606574792256" />
     <state x="580" y="147" key="NewPhpClassDialog" timestamp="1606662110419">
       <screen x="0" y="0" width="1536" height="824" />
+=======
+    <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1606664970505">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605877149103" />
+    <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606664970505" />
+    <state x="-896" y="327" key="NewPhpClassDialog" timestamp="1606574964359">
+      <screen x="-1440" y="174" width="1440" height="860" />
+>>>>>>> 77fbfb8529bf6554e5deceea94ca12db8a7ed688
     </state>
     <state x="580" y="147" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1606662110419" />
     <state x="-896" y="327" key="NewPhpClassDialog/0.0.1920.1040/-1440.174.1440.860@-1440.174.1440.860" timestamp="1606574964359" />
+<<<<<<< HEAD
     <state x="604" y="335" key="NewPhpFileDialog" timestamp="1606635109727">
       <screen x="0" y="0" width="1536" height="824" />
+=======
+    <state x="755" y="423" key="NewPhpFileDialog" timestamp="1606665072643">
+      <screen x="0" y="0" width="1920" height="1040" />
+>>>>>>> 77fbfb8529bf6554e5deceea94ca12db8a7ed688
     </state>
     <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1606635109727" />
     <state x="-874" y="524" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@-1440.174.1440.860" timestamp="1606574987411" />
-    <state x="755" y="423" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606525654563" />
+    <state x="755" y="423" key="NewPhpFileDialog/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606665072643" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1605775820306">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

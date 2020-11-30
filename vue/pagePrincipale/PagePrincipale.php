@@ -42,6 +42,17 @@
         </a>
     </div>
 </nav>
+
+<?php
+if(isset($dataVueErreur)){
+    foreach ($dataVueErreur as $erreur) {
+        print "<div class='mt-2 alert alert-danger alert-dismissible fade show text-center ' role='alert'>
+         $erreur
+          </div>";
+    }
+}
+?>
+
 <main role='main' class='container bg-white py-3 px-5 border my-5'>
     <h4 class='mt-1 ml-3 col-sm-10'>Ajouter une liste</h4>
     <form  class='d-flex col-12 p-3' method='POST'>

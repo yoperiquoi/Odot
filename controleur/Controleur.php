@@ -192,5 +192,9 @@ class Controleur
         }
 
     }
-
+}catch (Exception $e2){ // Récupération des erreur venant du modèle et de l'interaction avec la BDD
+    $dataVueErreur[]="Erreur métier ! ";
+}catch (PDOException $e) {
+    $dataVueErreur[] = "Erreur BDD ! ";
+    require(__DIR__."/../../vue/pageErreur/PageErreur.php");
 }
