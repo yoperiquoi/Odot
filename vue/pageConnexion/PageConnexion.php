@@ -47,8 +47,12 @@
         <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
         <label for="inputEmail" class="sr-only">Adresse mail</label>
         <input type="email" name="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus/>
+        <p class="text-lg-left ml-2 text-danger font-weight-bold <?php print isset($dataVueErreur['erreurEmail']) ? "" : "d-none"; ?>" >
+            <?php print isset($dataVueErreur['erreurEmail']) ? $dataVueErreur['erreurEmail'] : ""; ?></p>
         <label for="inputPassword" class="sr-only">Mot de passe</label>
         <input type="password" name="inputPassword" class="form-control" placeholder="Mot de passe" required/>
+        <p class="text-lg-left ml-2 text-danger font-weight-bold <?php print isset($dataVueErreur['erreurMdp']) ? "" : "d-none"; ?>" >
+            <?php print isset($dataVueErreur['erreurMdp']) ? $dataVueErreur['erreurMdp'] : ""; ?></p>
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Se rappeler de moi

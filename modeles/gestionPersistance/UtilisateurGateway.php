@@ -12,13 +12,18 @@ class UtilisateurGateway
     private $con;
     private $TU;
 
-    public function __construct($c)
+    public function __construct($c=null)
     {
-        $this->con=$c;
+        if(isset($c) && $c != null) {
+            $this->con=$c;
+        } else {
+            global $dsn, $user, $pass;
+            $this->con=new Connection($dsn, $user, $pass);
+        }
     }
 
 
-    public function findUtilisateur(string $email,string $mdp): Utilisateur{
+    public function findUtilisateur(string $email,string $mdp): ?Utilisateur{
         $query='SELECT * FROM Utilisateur where email=:email and mdp=:mdp';
         $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR),':mdp' => array($mdp, PDO::PARAM_STR)));
         $results=$this->con->getResults();

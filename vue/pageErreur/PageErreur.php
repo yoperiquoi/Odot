@@ -7,8 +7,8 @@
 
 <h1>Il y a eu une erreur durant le traitement des données !!</h1>
 <?php
-if (isset($dataVueErreur)) {
-    foreach ($dataVueErreur as $value){
+if (isset($dataPageErreur)) {
+    foreach ($dataPageErreur as $value){
         echo $value;
     }
 }

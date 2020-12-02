@@ -4,78 +4,85 @@ namespace config;
 
 class Validation
 {
-    public static function val_pseudo(string &$pseudo, &$dVueEreur)
+    public static function val_pseudo(?string &$pseudo, &$dataVueErreur)
     {
         if (!isset($pseudo) || $pseudo == "") {
-            $dVueEreur[] = "pas de nom";
+            $dataVueErreur['erreurNom'] = "pas de nom";
             $pseudo = "";
             return false;
         }
 
         if ($pseudo != filter_var($pseudo, FILTER_SANITIZE_STRING)) {
-            $dVueEreur[] = "Tentative d'injection de code (attaque sécurité)";
+            $dataVueErreur['erreurNom'] = "Tentative d'injection de code (attaque sécurité)";
             $pseudo = "";
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
-        if (preg_match($expression, $tache) != 1) {
-            $dVueEreur[] = "Le pseudo ne peut contenir que des lettres, chiffres et les caractères spéciaux : \" ' - _ .";
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
+        if (preg_match($expression, $pseudo) != 1) {
+            $dataVueErreur['erreurNom'] = "Le pseudo ne peut contenir que des lettres, chiffres (au moins un des deux) et les caractères spéciaux : \" ' - _ .";
             $pseudo = "";
             return false;
         }
         return true;
     }
 
-    public static function val_email(string &$email, &$dVueEreur)
+    public static function val_email(?string &$email, &$dataVueErreur)
     {
         if (!isset($email) || $email == "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $dVueEreur[] = "Email invalide";
+            $dataVueErreur['erreurEmail'] = "Email invalide";
             $email = "";
             return false;
         }
 
-        $expression = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
-        if (preg_match($expression, $tache) != 1) {
-            echo "Email invalide";
+        $expressionEmail = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
+        if (preg_match($expressionEmail, $email) != 1) {
+            $dataVueErreur['erreurEmail'] = "Email invalide";
             $email = "";
             return false;
         }
         return true;
     }
 
-    public static function val_mdp(string &$mdp, &$dVueEreur)
+    public static function val_mdp(?string &$mdp, &$dataVueErreur)
     {
         if (!isset($mdp) || $mdp == "") {
-            $dVueEreur[] = "pas de mot de passe";
+            $dataVueErreur['erreurMdp'] = "pas de mot de passe";
             $pseudo = "";
             return false;
         }
 
         if ($mdp != filter_var($mdp, FILTER_SANITIZE_STRING)) {
-            $dVueEreur[] = "Tentative d'injection de code (attaque sécurité)";
+            $dataVueErreur['erreurMdp'] = "Tentative d'injection de code (attaque sécurité)";
             $pseudo = "";
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
-        if (preg_match($expression, $tache) != 1) {
-            $dVueEreur[] = "Le mot de passe ne peut contenir que des lettres, chiffres et les caractères spéciaux : \" ' - _ .";
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
+        if (preg_match($expression, $mdp) != 1) {
+            $dataVueErreur['erreurMdp'] = "Le mot de passe ne peut contenir que des lettres, chiffres (au moins un des deux) et les caractères spéciaux : \" ' - _ .";
             $pseudo = "";
             return false;
         }
         return true;
     }
 
-    public static function val_form(string &$pseudo, string &$email, string &$mdp, &$dVueEreur)
+    public static function val_inscription(?string &$pseudo, ?string &$email, ?string &$mdp, &$dataVueErreur)
     {
-        if(!self::val_pseudo($pseudo, $dVueEreur)) return false;
-        if(!self::val_email($email, $dVueEreur)) return false;
-        if(!self::val_mdp($mdp, $dVueEreur)) return false;
+        if(!self::val_pseudo($pseudo, $dataVueErreur)) return false;
+        if(!self::val_email($email, $dataVueErreur)) return false;
+        if(!self::val_mdp($mdp, $dataVueErreur)) return false;
         return true;
     }
 
-    public static function val_liste(string &$liste, &$dataVueErreur)
+    public static function val_connection(?string &$email, ?string &$mdp, &$dataVueErreur) {
+        if(!self::val_email($email, $dataVueErreur)) return false;
+        if(!self::val_mdp($mdp, $dataVueErreur)) return false;
+        return true;
+    }
+
+
+    public static function val_liste(?string &$liste, &$dataVueErreur)
     {
         if (!isset($liste) || $liste == "") {
             $dataVueErreur['erreurListe'] = "La liste doit contenir un nom";
@@ -87,83 +94,81 @@ class Validation
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
         if (preg_match($expression, $liste) != 1) {
-            $dataVueErreur['erreurListe'] = "La liste ne peut contenir que des lettres, chiffres et les caractères spéciaux : \" ' - _ .";
+            $dataVueErreur['erreurListe'] = "La liste ne peut contenir que des lettres, chiffres (au moins un des deux) et les caractères spéciaux : \" ' - _ .";
             return false;
         }
         return true;
     }
 
-    public static function val_suppressionListe(string &$tache, &$dataVueErreur)
+    public static function val_suppressionListe(?string &$liste, &$dataPageErreur)
     {
-        if (!isset($tache) || $tache == "") {
-            $dataVueErreur['pageErreur'] = "La liste à supprimer n'a pas de nom";
+        if (!isset($liste) || $liste == "") {
+            $dataPageErreur[] = "La liste à supprimer n'a pas de nom";
             return false;
         }
 
-        if ($tache != filter_var($tache, FILTER_SANITIZE_STRING)) {
-            $dataVueErreur['pageErreur'] = "La liste à supprimer a un nom invalide";
+        if ($liste != filter_var($liste, FILTER_SANITIZE_STRING)) {
+            $dataPageErreur[] = "La liste à supprimer a un nom invalide";
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
-        if (preg_match($expression, $tache) != 1) {
-            $dataVueErreur['pageErreur'] = "La liste à supprimer a un nom invalide";
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
+        if (preg_match($expression, $liste) != 1) {
+            $dataPageErreur[] = "La liste à supprimer a un nom invalide";
             return false;
         }
         return true;
     }
 
-    public static function val_tache(string &$tache, string &$liste, &$dataVueErreur)
+    public static function val_tache(?string &$tache, ?string &$liste, &$dataVueErreur, &$dataVueErreurNom)
     {
         if (!isset($tache) || $tache == "") {
             $dataVueErreur['erreurTache'] = "La tache doit contenir un nom";
+            $dataVueErreurNom['erreurTache'] = $liste;
             return false;
         }
 
         if ($tache != filter_var($tache, FILTER_SANITIZE_STRING)) {
             $dataVueErreur['erreurTache'] = "Nom de tache invalide. Essayez-en un autre chose";
+            $dataVueErreurNom['erreurTache'] = $liste;
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
         if (preg_match($expression, $tache) != 1) {
-            $dataVueErreur['erreurTache'] = "La tache ne peut contenir que des lettres, chiffres et les caractères spéciaux : \" ' - _ .";
+            $dataVueErreur['erreurTache'] = "La tache ne peut contenir que des lettres, chiffres (au moins un des deux) et les caractères spéciaux : \" ' - _ .";
+            $dataVueErreurNom['erreurTache'] = $liste;
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
         if (!isset($liste) || $liste == "" || $liste != filter_var($liste, FILTER_SANITIZE_STRING) || preg_match($expression, $liste) != 1) {
             $dataVueErreur['erreurTache'] = "Erreur : la liste dans laquelle ajouter ne semble pas correcte";
+            $dataVueErreurNom['erreurTache'] = $liste;
             return false;
         }
         return true;
     }
 
-    public static function val_suppressionTache(string &$tache, &$liste, &$dataVueErreur)
+    public static function val_suppressionTache(?string &$tache, &$dataPageErreur)
     {
         if (!isset($tache) || $tache == "") {
-            $dataVueErreur['pageErreur'] = "La liste à supprimer n'a pas de nom";
+            $dataPageErreur[] = "La liste à supprimer n'a pas de nom";
             return false;
         }
 
         if ($tache != filter_var($tache, FILTER_SANITIZE_STRING)) {
-            $dataVueErreur['pageErreur'] = "La liste à supprimer a un nom invalide";
+            $dataPageErreur[] = "La liste à supprimer a un nom invalide";
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
         if (preg_match($expression, $tache) != 1) {
-            $dataVueErreur['pageErreur'] = "La liste à supprimer a un nom invalide";
+            $dataPageErreur[] = "La tâche à supprimer a un nom invalide";
             return false;
         }
 
-        $expression = '/^[0-9A-Za-z-_.\'"]*$/';
-        if (!isset($liste) || $liste == "" || $liste != filter_var($liste, FILTER_SANITIZE_STRING) || preg_match($expression, $liste) != 1) {
-            $dataVueErreur['pageErreur'] = "Erreur : la liste dans laquelle supprimer ne semble pas correcte";
-            return false;
-        }
         return true;
     }
 

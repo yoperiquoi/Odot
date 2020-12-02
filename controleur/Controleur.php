@@ -2,6 +2,8 @@
 
 namespace controleur;
 
+use modeles\gestionPersistance\ModeleTachesPrivees;
+use modeles\gestionPersistance\ModeleTachesPubliques;
 use modeles\gestionPersistance\TacheGateway;
 use modeles\gestionPersistance\Connection;
 use modeles\gestionPersistance\UtilisateurGateway;
@@ -9,6 +11,8 @@ use modeles\gestionTaches\Tache;
 use modeles\gestionTaches\ListeTache;
 use modeles\gestionUtilisateur\Utilisateur;
 use config\Validation;
+use config\Nettoyage;
+use PDOException;
 
 
 class Controleur
@@ -17,184 +21,392 @@ class Controleur
 
     function __construct()
     {
-        //A enlever après
-        $user = 'root';
-        $pass = '';
-        $dsn = 'mysql:host=localhost;dbname=OdotTest';
 
-
-
-        global $rep, $vues, $css, $bootstrap, $dataVueErreur; // nécessaire pour utiliser variables globales
+        global $dataPageErreur; // nécessaire pour utiliser variables globales
 // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
 //        session_start();
-
-
-        $TabErreur = array();
+        global $user, $pass, $dsn; // nécessaire pour accéder à la base de données
 
         try {
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
-            $Gateway = new TacheGateway(new Connection($dsn, $user, $pass));
-            $GatewayPrivee = new UtilisateurGateway(new Connection($dsn, $user, $pass));
 
             switch ($action) {
-
                 case NULL:
-                    $ListesPublique = $Gateway->findAllListes();
-                    require($rep.$vues['pagePrincipale']);
+                    $this->pagePrincipale();
                     break;
 
                 case "ajouterListePublique":
-                    $Nom=$_POST['AjoutListe'];
-
-                    if(Validation::val_liste($Nom, $dataVueErreur)) {
-                        try {
-                            $Gateway->ajouterListe($Nom);
-                        } catch (\Exception $e) {
-                            $dataVueErreur['erreurListe'] = "Erreur non prise en charge : ".$e->getMessage();
-                        }
-                    }
-                    $ListesPublique = $Gateway->findAllListes();
-                    require($rep.$vues['pagePrincipale']);
+                    $this->ajouterListePublique();
                     break;
 
                 case "supprimerListePublique":
-                    $Nom = $_POST['NomListe'];
-
-                    if(!Validation::val_suppressionListe($Nom, $dataVueErreur)) {
-                        //Afficher la page d'erreur !!
-                    } else {
-                        try {
-                            $Gateway->delListe($Nom);
-                        } catch (\Exception $e) {
-                            $dataVueErreur['pageErreur'] = "Erreur non prise en charge : ".$e->getMessage();
-                            //Afficher page erreur
-                        }
-                    }
-                    $ListesPublique = $Gateway->findAllListes();
-                    require($rep.$vues['pagePrincipale']);
+                    $this->supprimerListePublique();
                     break;
 
                 case "ajouterTachePublique":
-                    $Nom=$_POST['Ajout'];
-                    $Liste=$_POST['Liste'];
-
-                    if(Validation::val_tache($Nom, $Liste, $dataVueErreur)) {
-                        try {
-                            $Gateway->ajoutTache($Liste,$Nom);
-                        } catch (\Exception $e) {
-                            $dataVueErreur['erreurTache'] = "Erreur non prise en charge : ".$e->getMessage();
-                        }
-                    }
-                    $ListesPublique = $Gateway->findAllListes();
-                    require($rep.$vues['pagePrincipale']);
-
+                    $this->ajouterTachePublique();
                     break;
 
                 case "supprimerTachePublique":
-                    $Nom=$_POST['NomTache'];
-                    //Faut pas mettre le nom de la liste dans laquelle supprimer ??
-
-                    if(!Validation::val_suppressionTache($Nom, $Liste, $dataVueErreur)) {
-                        //Afficher page erreur
-                    } else {
-                        try {
-                            $TachesPublique=$Gateway->delTache($Nom);
-                        } catch (\Exception $e) {
-                            $dataVueErreur['pageErreur'] = "Erreur non prise en charge : ".$e->getMessage();
-                            //Afficher page erreur
-                        }
-                    }
-
-                    $ListesPublique = $Gateway->findAllListes();
-                    require($rep.$vues['pagePrincipale']);
+                    $this->supprimerTachePublique();
                     break;
 
                 case "pageConnection":
-                    require($rep.$vues['pageConnexion']);
+                    $this->pageConnection();
                     break;
 
                 case "seConnecter":
-                    $Email = $_POST['inputEmail'];
-                    $Mdp = $_POST['inputPassword'];
-
-                    $Utilisateur=$GatewayPrivee->findUtilisateur($Email, $Mdp);
-
-                    session_start();
-                    $_SESSION['Utilisateur']=$Utilisateur->Email;
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    require($rep.$vues['pagePrivee']);
+                    $this->seConnecter();
                     break;
 
-                case "pagePrivée":
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    //if(isset($_SESSION['Utilisateur'])){
-                    require($rep.$vues['pagePrivee']);
-                    //}else{
-                    //   require($rep.$vues['pageConnexion']);
-                    //}
+                case "pagePrivee":
+                    $this->pagePrivee();
                     break;
 
                 case "ajouterListePrivee":
-                    $Nom=$_POST['AjoutListe'];
-                    $GatewayPrivee->ajouterListe($Nom,"yoann_63115@hotmail.fr");
-
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    require($rep.$vues['pagePrivee']);
+                    $this->ajouterListePrivee();
                     break;
 
                 case "supprimerListePrivee":
-                    $Nom=$_POST['NomListe'];
-                    $GatewayPrivee->delListe($Nom,"yoann_63115@hotmail.fr");
-
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    require($rep.$vues['pagePrivee']);
+                    $this->supprimerListePrivee();
                     break;
 
                 case "ajouterTachePrivee":
-                    $Nom=$_POST['Ajout'];
-                    $Liste=$_POST['Liste'];
-                    $GatewayPrivee->ajoutTache($Liste,$Nom);
-
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    require($rep.$vues['pagePrivee']);
+                    $this->ajouterTachePrivee();
                     break;
 
                 case "supprimerTachePrivee":
-                    $Nom=$_POST['NomTache'];
-                    $TachesPrivee=$GatewayPrivee->delTache($Nom);
-
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    require($rep.$vues['pagePrivee']);
+                    $this->supprimerTachePrivee();
                     break;
 
                 case "pageInscription":
-                    require($rep.$vues['pageInscription']);
+                    $this->pageInscription();
                     break;
 
                 case "creerUtilisateur":
-                    $Email=$_POST['inputEmail'];
-                    $Mdp=$_POST['inputPassword'];
-                    $Pseudo=$_POST['inputPseudo'];
-                    $GatewayPrivee->ajoutUtilisateur($Email,$Pseudo,$Mdp);
-
-                    $ListesPrivee = $GatewayPrivee->findAllListesUtilisateur("yoann_63115@hotmail.fr");
-                    require($rep.$vues['pagePrivee']);
+                    $this->creerUtilisateur();
                     break;
 
-//mauvaise action
+                //mauvaise action
                 default:
-                    $dataVueErreur['erreurAppel'] = "Erreur d'appel php";
-                    require($rep.$vues['pagePrincipale']);
+                    $dataPageErreur['erreurAppel'] = "Erreur d'appel php";
+                    $this->erreur();
                     break;
             }
-        } catch (Exception $e2) {
-            $TabErreur[] = "Erreur métier ! ";
+        } catch (PDOException $e) {
+            $dataPageErreur[] = "Erreur BDD ! ";
+            $this->erreur();
+            return;
+        } catch (\Exception $e2) { // Récupération des erreurs venant du modèle et de l'interaction avec la BDD
+            $dataPageErreur[] = "Erreur métier ! ";
+            $this->erreur();
+            return;
+        }
+    }
+
+    private function pagePrincipale() {
+        global $rep, $vues, $dataPageErreur, $dataVueErreur, $dataVueErreurNom; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPubliques();
+
+        try {
+            $ListesPublique = $m->toutesLesListes();
+        } catch (\Exception $e) {
+            $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+            require($rep . $vues['erreur']);
+            return;
+        }
+        require($rep . $vues['pagePrincipale']);
+    }
+
+    private function ajouterListePublique() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPubliques();
+
+        $Nom = $_POST['AjoutListe'];
+
+        if (Validation::val_liste($Nom, $dataVueErreur)) {
+            try {
+                $m->ajouterListe($Nom);
+            } catch (PDOException $e) {
+                if($e->getCode() == 23000) {
+                    $dataVueErreur['erreurListe'] = "Une liste avec ce nom existe déjà";
+                    $_REQUEST['action'] = null;
+                    require($rep.$vues['index']);
+                    return;
+                } else {
+                    $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                    require($rep . $vues['erreur']);
+                    return;
+                }
+            } catch (\Exception $e) {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            }
         }
 
+        $this->pagePrincipale();
     }
-}catch (Exception $e2){ // Récupération des erreur venant du modèle et de l'interaction avec la BDD
-    $dataVueErreur[]="Erreur métier ! ";
-}catch (PDOException $e) {
-    $dataVueErreur[] = "Erreur BDD ! ";
-    require(__DIR__."/../../vue/pageErreur/PageErreur.php");
+
+    private function supprimerListePublique() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPubliques();
+
+        $Nom = $_POST['NomListe'];
+
+        if (!Validation::val_suppressionListe($Nom, $dataPageErreur)) {
+            require($rep . $vues['erreur']);
+            return;
+        }
+        try {
+            $m->supprimerListe($Nom);
+        } catch (PDOException $e) {
+            if($e->getCode() == 1) {
+                $dataVueErreur['erreurListe'] = "La liste à supprimer n'existe pas, veuillez réessayer";
+                $_REQUEST['action'] = null;
+                require($rep.$vues['index']);
+                return;
+            } else {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage() ." Code :".$e->getCode();
+                require($rep . $vues['erreur']);
+                return;
+            }
+        } catch (\Exception $e) {
+            $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        $this->pagePrincipale();
+    }
+
+    private function ajouterTachePublique() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPubliques();
+
+        $Nom = $_POST['Ajout'];
+        $Liste = $_POST['Liste'];
+
+        if (Validation::val_tache($Nom, $Liste, $dataVueErreur, $dataVueErreurNom)) {
+            try {
+                $m->ajouterTache($Liste, $Nom);
+            } catch (PDOException $e) {
+                if($e->getCode() == 23000) {
+                    $dataVueErreur['erreurTache'] = "Une tâche avec ce nom existe déjà";
+                    $dataVueErreurNom['erreurTache'] = $Liste;
+                    $_REQUEST['action'] = null;
+                    require($rep.$vues['index']);
+                    return;
+                } else {
+                    $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                    require($rep . $vues['erreur']);
+                    return;
+                }
+            } catch (\Exception $e) {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            }
+        }
+
+        $this->pagePrincipale();
+    }
+
+    private function supprimerTachePublique() {
+        global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPubliques();
+
+        $Nom = $_POST['NomTache'];
+
+        if (!Validation::val_suppressionTache($Nom, $dataPageErreur)) {
+            require($rep . $vues['erreur']);
+            return;
+        }
+        try {
+            $m->supprimerTache($Nom);
+        } catch (\Exception $e) {
+            $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        $this->pagePrincipale();
+    }
+
+    private function pageConnection() {
+        global $rep, $vues; // nécessaire pour utiliser les variables globales
+        require($rep . $vues['pageConnexion']);
+    }
+
+    private function seConnecter() {
+        global $rep, $vues, $dataVueErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        $Email = $_POST['inputEmail'];
+        $Mdp = $_POST['inputPassword'];
+
+        if(!Validation::val_connection($Email, $Mdp, $dataVueErreur)) {
+            $_REQUEST['action'] = "pageConnection";
+            require ($rep . $vues['index']);
+            return;
+        }
+
+        try {
+            $Utilisateur = $m->trouverUtilisateur($Email, $Mdp);
+        } catch (\Exception $e) {
+            $dataVueErreur['erreurMdp'] = "L'email ou le mot de passe n'est pas correct";
+            $_REQUEST['action'] = "pageConnection";
+            require ($rep . $vues['index']);
+            return;
+        }
+
+        if($Utilisateur == null) {
+            $dataVueErreur['erreurMdp'] = "L'email ou le mot de passe n'est pas correct";
+            $_REQUEST['action'] = "pageConnection";
+            require ($rep . $vues['index']);
+            return;
+        }
+
+        session_start();
+        $_SESSION['Utilisateur'] = $Utilisateur->Email;
+
+        $this->pagePrivee();
+    }
+
+    private function pagePrivee() {
+        global $rep, $vues, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        try {
+            $ListesPrivee = $m->toutesLesListes($_SESSION['Utilisateur']);
+        } catch (\Exception $e) {
+            $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+            require($rep . $vues['erreur']);
+            return;
+        }
+        require($rep.$vues['pagePrivee']);
+    }
+
+    private function ajouterListePrivee() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        $Nom = $_POST['AjoutListe'];
+
+        if(Validation::val_liste($Nom, $dataVueErreur)) {
+            if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
+                require($rep . $vues['erreur']);
+                return;
+            }
+            $m->ajouterListe($Nom, $_SESSION['Utilisateur']);
+        }
+        $this->pagePrivee();
+    }
+
+    private function supprimerListePrivee() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        $Nom = $_POST['NomListe'];
+
+        if(!Validation::val_suppressionListe($Nom, $dataVueErreur)) {
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        try {
+            $m->supprimerListe($Nom, $_SESSION['Utilisateur']);
+        } catch (\Exception $e) {
+            $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        $this->pagePrivee();
+    }
+
+    private function ajouterTachePrivee() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        $Nom = $_POST['Ajout'];
+        $Liste = $_POST['Liste'];
+
+        if (!Validation::val_tache($Nom, $Liste, $dataVueErreur, $dataVueErreurNom)) {
+            try {
+                $m->ajouterTache($Liste, $Nom);
+            } catch (\Exception $e) {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            }
+        }
+
+        $this->pagePrivee();
+    }
+
+    private function supprimerTachePrivee() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        $Nom = $_POST['NomTache'];
+
+        if(!Validation::val_suppressionTache($Nom, $dataPageErreur)) {
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        try {
+            $m->supprimerTache($Nom);
+        } catch (\Exception $e) {
+            $dataPageErreur['erreurTache'] = "Erreur non prise en charge : " . $e->getMessage();
+            require($rep . $vues['erreur']);
+            return;
+        }
+
+        $this->pagePrivee();
+    }
+
+    private function pageInscription() {
+        global $rep, $vues, $dataVueErreur; // nécessaire pour utiliser les variables globales
+        require($rep . $vues['pageInscription']);
+    }
+
+    private function creerUtilisateur() {
+        global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        $m = new ModeleTachesPrivees();
+
+        $Email = $_POST['inputEmail'];
+        $Mdp = $_POST['inputPassword'];
+        $Pseudo = $_POST['inputPseudo'];
+
+        if(Validation::val_inscription($Pseudo, $Email, $Mdp, $dataVueErreur)) {
+            try {
+                $m->AjouterUtilisateur($Email, $Pseudo, $Mdp);
+            } catch (\Exception $e) {
+                $dataPageErreur['erreurTache'] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            }
+        }
+
+        $this->pagePrivee();
+    }
+
+    private function erreur() {
+        global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        require($rep . $vues['erreur']);
+    }
+
+
 }

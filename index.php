@@ -25,7 +25,4 @@ $myLibLoader->register();
 $cont = new controleur\Controleur();
 //header('Location: controleur/Controleur.php');
 
-
-
-
 ?>

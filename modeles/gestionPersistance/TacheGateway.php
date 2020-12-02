@@ -2,6 +2,7 @@
 
 namespace modeles\gestionPersistance;
 
+use http\Exception\InvalidArgumentException;
 use modeles\gestionTaches\Tache;
 use modeles\gestionTaches\ListeTache;
 use PDO;
@@ -10,9 +11,14 @@ class TacheGateway
 {
     private $con;
 
-    public function __construct($c)
+    public function __construct($c=null)
     {
-        $this->con=$c;
+        if(isset($c) && $c != null) {
+            $this->con = $c;
+        } else {
+            global $dsn, $user, $pass;
+            $this->con=new Connection($dsn, $user, $pass);
+        }
     }
 
     public function ajoutTache(string $liste,string $nom) {
@@ -22,7 +28,7 @@ class TacheGateway
         foreach ($results as $value){
             $idTache=$value['IdTache'];
         }
-        $idTache=$idTache+1;
+        $idTache= isset($idTache) ? $idTache+1 : 1;
         $query='INSERT INTO Tache values (:idTache,:nom, false)';
         $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT),':nom' => array($nom, PDO::PARAM_STR)));
 
@@ -85,6 +91,7 @@ class TacheGateway
         foreach ($result as $value){
             $IdListe=$value['IdListePublique'];
         }
+        if(!isset($IdListe)) throw new \PDOException("Pas de liste avec ce nom", 1);
         $query='SELECT IdTache FROM ListeTachePublic where IdListePublique=:IdListe';
         $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
         $result=$this->con->getResults();

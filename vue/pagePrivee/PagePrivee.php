@@ -26,11 +26,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-                <a class="nav-link " href="?action=NULL">Publique</a>
+            <li class="nav-item active">
+                <a class="nav-link " href="?action">Publique</a>
             </li>
             <li class="nav-item active">
-                <a style="text-decoration: none" class="nav-link " href="?action=pagePrivee" tabindex="-1" aria-disabled="true">Privé<span class="sr-only">(current)</span></a>
+                <a style="text-decoration: none" class="nav-link " href="#" tabindex="-1" aria-disabled="true">Privé<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -42,7 +42,9 @@
         <input type='text' name='AjoutListe' class='form-control todo-list-input mr-1' placeholder='Nouvelle Liste'>
         <button type='submit' name='action' value='ajouterListePrivee' class='btn btn-primary'>Ajouter</button>
     </form>
+    <p class="m-0 ml-5 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurListe']) ? $dataVueErreur['erreurTache'] : ""; ?></p>
 </main>
+<p class="m-0 ml-5 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurTache']) ? $dataVueErreur['erreurTache'] : ""; ?></p>
 <main role='main' class='container bg-white py-2 px-5 border my-5'>
     <?php
     if($ListesPrivee!=NULL){

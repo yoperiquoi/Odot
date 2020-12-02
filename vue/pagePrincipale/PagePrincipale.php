@@ -30,10 +30,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Publique<span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="#">Publique<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?action=pagePrivée" tabindex="-1" aria-disabled="true">Privé</a>
+                <a class="nav-link" href="?action=pagePrivee" tabindex="-1" aria-disabled="true">Privé</a>
             </li>
         </ul>
         <label class="mr-sm-2 text-light mt-2">Invité</label>
@@ -44,13 +44,13 @@
 </nav>
 
 <?php
-if(isset($dataVueErreur)){
-    foreach ($dataVueErreur as $erreur) {
-        print "<div class='mt-2 alert alert-danger alert-dismissible fade show text-center ' role='alert'>
-         $erreur
-          </div>";
-    }
-}
+//if(isset($dataVueErreur)){
+//    foreach ($dataVueErreur as $erreur) {
+//        print "<div class='mt-2 alert alert-danger alert-dismissible fade show text-center ' role='alert'>
+//         $erreur
+//          </div>";
+//    }
+//}
 ?>
 
 <main role='main' class='container bg-white py-3 px-5 border my-5'>
@@ -59,11 +59,10 @@ if(isset($dataVueErreur)){
         <input type='text' name='AjoutListe' class='form-control todo-list-input mr-1' placeholder='Nouvelle Liste'>
         <button type='submit' name="action" value="ajouterListePublique" class='btn btn-primary'>Ajouter</button>
     </form>
-    <p class="m-0 ml-5 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurListe']) ? $dataVueErreur['erreurTache'] : ""; ?></p>
+    <p class="m-0 ml-4 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurListe']) ? $dataVueErreur['erreurListe'] : ""; ?></p>
 </main>
-<p class="m-0 ml-5 text-danger font-weight-bold" ><?php print isset($dataVueErreur['erreurTache']) ? $dataVueErreur['erreurTache'] : ""; ?></p>
 <main role='main' class='container bg-white py-2 px-5 border '>
-<?php
+    <?php
         if($ListesPublique!=NULL) {
             foreach ($ListesPublique as $ListePublique) {
                 print"
@@ -79,9 +78,14 @@ if(isset($dataVueErreur)){
                 <input type='hidden' name='Liste' value='$ListePublique'/>
                 <input type='text' name='Ajout' class='form-control todo-list-input mr-1' placeholder='Nouvelle Tache'>
                 <button type='submit' name='action' value='ajouterTachePublique' class='btn btn-primary'>Ajouter</button>
-            </form>
-        
-            <ul class='list-unstyled shadow-sm mb-1'>";
+            </form>";
+                if(isset($dataVueErreur['erreurTache'])) {
+                    if($dataVueErreurNom['erreurTache'] == $ListePublique) {
+                        print "<p class='m-0 ml-4 text-danger font-weight-bold'>".$dataVueErreur['erreurTache']."</p>";
+                    }
+                }
+
+    print "<ul class='list-unstyled shadow-sm mb-1'>";
                 if ($ListePublique->Taches != NULL) {
                     $TachesPublique = $ListePublique->Taches;
                     foreach ($TachesPublique as $Tache) {
@@ -114,7 +118,7 @@ if(isset($dataVueErreur)){
                 print "</main>";
             }
         }else{
-            print "<h5 class='text-center'>Veuillez commencer par créer une liste !</h5>";
+            print "<h5 class='text-center mt-2'>Veuillez commencer par créer une liste !</h5>";
         }
         ?>
 </main>

@@ -18,11 +18,11 @@ $dsn = 'mysql:host=localhost;dbname=OdotTest';
 //Vues
 
 $vues['index']='index.php';
-$vues['erreur']='vues/erreur.php';
+$vues['erreur']='vue/pageErreur/PageErreur.php';
 $vues['pageConnexion']='vue/pageConnexion/PageConnexion.php';
 $vues['pageInscription']='vue/pageInscription/PageInscription.php';
 $vues['pagePrincipale']='vue/pagePrincipale/PagePrincipale.php';
-$vues['pagePrivee']='vue/pagePrivee/PagePrive.php';
+$vues['pagePrivee']='vue/pagePrivee/PagePrivee.php';
 
 //CSS
 
