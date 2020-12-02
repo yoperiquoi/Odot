@@ -5,10 +5,6 @@
 //chargement config
 require_once(__DIR__.'/config/config.php');
 
-$user = 'root';
-$pass = '';
-$dsn = 'mysql:host=localhost;dbname=OdotTest';
-
 //autoloader conforme norme PSR-0
 require_once(__DIR__.'/config/SplClassLoader.php');
 $myLibLoader = new SplClassLoader('controleur', './');
@@ -23,6 +19,5 @@ $myLibLoader = new SplClassLoader('modeles\gestionUtilisateur', './');
 $myLibLoader->register();
 
 $cont = new controleur\Controleur();
-//header('Location: controleur/Controleur.php');
 
 ?>

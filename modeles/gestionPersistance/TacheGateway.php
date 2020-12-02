@@ -77,6 +77,7 @@ class TacheGateway
         foreach ($results as $value){
             $idTache=$value['IdTache'];
         }
+        if(!isset($idTache)) throw new \PDOException("Pas de tache avec ce nom, veuillez réessayer", 1);
         $query='DELETE FROM ListeTachePublic where IdTache=:id';
         $this->con->executeQuery($query,array(':id'=>array($idTache, PDO::PARAM_INT)));
 

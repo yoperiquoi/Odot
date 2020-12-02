@@ -8,12 +8,10 @@ $rep=__DIR__.'/../';
 //$dConfig['includes']= array('controleur/Validation.php');
 
 
-
 //BD
 $user = 'root';
 $pass = '';
 $dsn = 'mysql:host=localhost;dbname=OdotTest';
-
 
 //Vues
 

@@ -17,15 +17,12 @@ use PDOException;
 
 class Controleur
 {
-
-
     function __construct()
     {
 
         global $dataPageErreur; // nécessaire pour utiliser variables globales
 // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
 //        session_start();
-        global $user, $pass, $dsn; // nécessaire pour accéder à la base de données
 
         try {
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
@@ -213,7 +210,7 @@ class Controleur
     }
 
     private function supprimerTachePublique() {
-        global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataPageErreur, $dataVueErreur; // nécessaire pour utiliser les variables globales
         $m = new ModeleTachesPubliques();
 
         $Nom = $_POST['NomTache'];
@@ -224,6 +221,17 @@ class Controleur
         }
         try {
             $m->supprimerTache($Nom);
+        } catch (PDOException $e) {
+            if($e->getCode() == 1) {
+                $dataVueErreur['erreurListe'] = $e->getMessage();
+                $_REQUEST['action'] = null;
+                require($rep.$vues['index']);
+                return;
+            } else {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            }
         } catch (\Exception $e) {
             $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
             require($rep . $vues['erreur']);
