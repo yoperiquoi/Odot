@@ -11,15 +11,16 @@
 
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/jpg" href="Images/OdotShortcut.jpg">
+    <link href="vue/pagePrivee/CSSPagePrivee.css" rel="stylesheet">
 
     <meta name="theme-color" content="#563d7c">
 
 
 </head>
 
-<body>
+<body class="bg">
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="?action">Odot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

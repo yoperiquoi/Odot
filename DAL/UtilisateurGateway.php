@@ -66,19 +66,19 @@ class UtilisateurGateway
         return $ListesTachesPrivee;
     }
 
-    public function ajoutTache(string $liste,string $nom) {
+    public function ajoutTache(string $liste,string $nom, string $email) {
         $query='SELECT IdTache FROM TACHEPRIVEE WHERE IdTache=(SELECT MAX(IdTache) from TACHEPrivee)';
         $this->con->executeQuery($query,array());
         $results=$this->con->getResults();
         foreach ($results as $value){
             $idTache=$value['IdTache'];
         }
-        $idTache = isset($idTache) ? $idTache+1 : 1;
+        $idTache = 1;
         $query='INSERT INTO TachePrivee values (:idTache,:nom, false)';
         $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT),':nom' => array($nom, PDO::PARAM_STR)));
 
-        $query = 'SELECT IdListeTache FROM ListesTaches where Titre=:liste';
-        $this->con->executeQuery($query, array(':liste' => array($liste, PDO::PARAM_STR)));
+        $query = 'SELECT IdListeTache FROM ListesTaches where Titre=:liste and Email=:email';
+        $this->con->executeQuery($query, array(':liste' => array($liste, PDO::PARAM_STR),':email' => array($email, PDO::PARAM_STR)));
         $resultats =$this->con->getResults();
         foreach ($resultats as $idL) {
             $query = 'INSERT INTO ListeTachePrivee values (:idL, :idT)';

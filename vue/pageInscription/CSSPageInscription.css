@@ -28,3 +28,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.bg {
+    background-color: ghostwhite;
+}

@@ -30,6 +30,6 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     border-top-right-radius: 0;
 }
 
-a {
-
+.bg {
+    background-color: ghostwhite;
 }

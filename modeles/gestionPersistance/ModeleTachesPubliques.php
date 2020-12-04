@@ -27,8 +27,8 @@ class ModeleTachesPubliques
         $this->gateway->delListe($Nom);
     }
 
-    public function ajouterTache(String $Liste, String $Nom) {
-        $this->gateway->ajoutTache($Liste, $Nom);
+    public function ajouterTache(String $Liste, String $Nom,String $Email) {
+        $this->gateway->ajoutTache($Liste, $Nom,$Email);
     }
 
     public function supprimerTache(String $Nom) {

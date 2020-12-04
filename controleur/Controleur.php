@@ -42,7 +42,11 @@ class Controleur
                     break;
 
                 case "pageConnection":
-                    $this->pageConnection();
+                    if(isset($_SESSION)){
+                        $this->pagePrivee();
+                    }else {
+                        $this->pageConnection();
+                    }
                     break;
 
                 case "seConnecter":
@@ -342,9 +346,9 @@ class Controleur
         $Nom = $_POST['Ajout'];
         $Liste = $_POST['Liste'];
 
-        if (!Validation::val_tache($Nom, $Liste, $dataVueErreur, $dataVueErreurNom)) {
+        if (Validation::val_tache($Nom, $Liste, $dataVueErreur, $dataVueErreurNom)) {
             try {
-                $m->ajouterTache($Liste, $Nom);
+                $m->ajouterTache($Liste, $Nom,$_SESSION['Utilisateur']);
             } catch (\Exception $e) {
                 $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
                 require($rep . $vues['erreur']);
