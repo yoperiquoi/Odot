@@ -1,6 +1,6 @@
 <?php
 
-namespace modeles\gestionPersistance;
+namespace DAL;
 
 use PDO;
 

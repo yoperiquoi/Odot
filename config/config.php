@@ -21,7 +21,7 @@ $vues['pageConnexion']='vue/pageConnexion/PageConnexion.php';
 $vues['pageInscription']='vue/pageInscription/PageInscription.php';
 $vues['pagePrincipale']='vue/pagePrincipale/PagePrincipale.php';
 $vues['pagePrivee']='vue/pagePrivee/PagePrivee.php';
-
+/*
 //CSS
 
 $css['pageConnexion']='vue/pageConnexion/CSSPageConnexion.php';
@@ -31,7 +31,7 @@ $css['pagePrincipale']='vue/pagePrincipale/CSSPagePrincipale.php';
 //BootStrap
 
 $bootstrap['min.css']='BootStrap/css/bootstrap.min.css';
-
+*/
 ?>
 
 

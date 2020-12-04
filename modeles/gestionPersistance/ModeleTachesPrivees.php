@@ -4,6 +4,8 @@
 namespace modeles\gestionPersistance;
 
 
+use DAL\UtilisateurGateway;
+
 class ModeleTachesPrivees
 {
     private $gateway;

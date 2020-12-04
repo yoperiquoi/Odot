@@ -4,8 +4,7 @@
 namespace modeles\gestionPersistance;
 
 
-use http\Encoding\Stream;
-use http\Exception\BadQueryStringException;
+use DAL\TacheGateway;
 
 class ModeleTachesPubliques
 {

@@ -1,8 +1,7 @@
 <?php
 
-namespace modeles\gestionPersistance;
+namespace DAL;
 
-use http\Exception\InvalidArgumentException;
 use modeles\gestionTaches\Tache;
 use modeles\gestionTaches\ListeTache;
 use PDO;

@@ -11,6 +11,8 @@ $myLibLoader = new SplClassLoader('controleur', './');
 $myLibLoader->register();
 $myLibLoader = new SplClassLoader('config', './');
 $myLibLoader->register();
+$myLibLoader = new SplClassLoader('DAL', './');
+$myLibLoader->register();
 $myLibLoader = new SplClassLoader('modeles\gestionPersistance', './');
 $myLibLoader->register();
 $myLibLoader = new SplClassLoader('modeles\gestionTaches', './');

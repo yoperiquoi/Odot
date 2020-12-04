@@ -4,14 +4,7 @@ namespace controleur;
 
 use modeles\gestionPersistance\ModeleTachesPrivees;
 use modeles\gestionPersistance\ModeleTachesPubliques;
-use modeles\gestionPersistance\TacheGateway;
-use modeles\gestionPersistance\Connection;
-use modeles\gestionPersistance\UtilisateurGateway;
-use modeles\gestionTaches\Tache;
-use modeles\gestionTaches\ListeTache;
-use modeles\gestionUtilisateur\Utilisateur;
 use config\Validation;
-use config\Nettoyage;
 use PDOException;
 
 
@@ -22,7 +15,7 @@ class Controleur
 
         global $dataPageErreur; // nécessaire pour utiliser variables globales
 // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-//        session_start();
+        session_start();
 
         try {
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
@@ -275,7 +268,6 @@ class Controleur
             return;
         }
 
-        session_start();
         $_SESSION['Utilisateur'] = $Utilisateur->Email;
 
         $this->pagePrivee();

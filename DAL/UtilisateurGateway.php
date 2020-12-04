@@ -1,6 +1,6 @@
 <?php
 
-namespace modeles\gestionPersistance;
+namespace DAL;
 
 use modeles\gestionUtilisateur\Utilisateur;
 use modeles\gestionTaches\ListeTache;
@@ -73,9 +73,7 @@ class UtilisateurGateway
         foreach ($results as $value){
             $idTache=$value['IdTache'];
         }
-
-        $idTache=$idTache+1;
-        print $idTache;
+        $idTache = isset($idTache) ? $idTache+1 : 1;
         $query='INSERT INTO TachePrivee values (:idTache,:nom, false)';
         $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT),':nom' => array($nom, PDO::PARAM_STR)));
 
