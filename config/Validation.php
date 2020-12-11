@@ -172,7 +172,7 @@ class Validation
         return true;
     }
 
-    public static function val_cocheTache(?string &$tache, &$dataPageErreur)
+    public static function val_cocheTache(?string &$tache, ?string &$liste, &$dataPageErreur)
     {
         if (!isset($tache) || $tache == "") {
             $dataPageErreur[] = "La tâche à cocher n'a pas de nom";
@@ -190,7 +190,17 @@ class Validation
             return false;
         }
 
+        if (!isset($liste) || $liste == "" || $liste != filter_var($liste, FILTER_SANITIZE_STRING) || preg_match($expression, $liste) != 1) {
+            $dataVueErreur['erreurTache'] = "Erreur : la liste dans laquelle ajouter ne semble pas correcte";
+            $dataVueErreurNom['erreurTache'] = $liste;
+            return false;
+        }
+
         return true;
     }
 
+    public static function val_cocheTacheUtilisateur(?string &$tache, ?string &$liste, &$email, &$dataPageErreur) {
+        Validation::val_cocheTache($tache, $liste, $dataPageErreur);
+        Validation::val_email($email, $dataPageErreur);
+    }
 }

@@ -250,9 +250,9 @@ class Controleur
 
         $Nom = $_POST['NomTache'];
 
-        if (Validation::val_cocheTache($Nom, $dataPageErreur)) {
+        if (Validation::val_cocheTache($Nom, $liste, $dataPageErreur)) {
             try {
-                $m->cocheTachePublique($Nom);
+                $m->cocherTache($Nom, $liste);
             } catch (PDOException $e) {
                 $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
                 require($rep . $vues['erreur']);

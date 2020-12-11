@@ -10,6 +10,7 @@
                 $(this).attr('checked', 'checked');
             }
             var tache = $(this).closest("label").text();
+            var liste = $(this).closest("h5").text();
         });
     });
 })(jQuery);

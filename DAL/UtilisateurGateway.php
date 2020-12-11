@@ -148,9 +148,9 @@ class UtilisateurGateway
     }
 
 
-    public function cocherTache(string $nom,string $liste){
-        $query='SELECT IdListeTache from ListesTache WHERE titre=:liste';
-        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
+    public function cocherTache(string $nom,string $liste, string $email){
+        $query='SELECT IdListeTache from ListesTache WHERE titre=:liste and email=:email';
+        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR), ':email' => array($email, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
             $IdListe=$row['IdListePublic'];
