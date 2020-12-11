@@ -19,6 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="Révision et finition des diagrammes, ajout d'un page d'erreur pas encore fonctionnel et de l'affichage d'erreur sur la page principale.">
       <change afterPath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -27,6 +28,14 @@
       <change beforePath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPubliques.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPubliques.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" afterDir="false" />
+=======
+    <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="Révision fonction ajouter tache privée, ajout sur pageErreur, rendu n°1.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/TacheGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/TacheGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/UtilisateurGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/UtilisateurGateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controleur/Controleur.php" beforeDir="false" afterPath="$PROJECT_DIR$/controleur/Controleur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPubliques.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPubliques.php" afterDir="false" />
+>>>>>>> 234200027a8a9977ebe21de827068790af314a1c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,11 +102,18 @@
       <workItem from="1606902667640" duration="2873000" />
       <workItem from="1606927231429" duration="973000" />
       <workItem from="1606995752518" duration="1508000" />
+<<<<<<< HEAD
       <workItem from="1607085559528" duration="5030000" />
       <workItem from="1607346145112" duration="6061000" />
       <workItem from="1607463943081" duration="1373000" />
       <workItem from="1607621384383" duration="621000" />
       <workItem from="1607690413873" duration="1903000" />
+=======
+      <workItem from="1607085559528" duration="5132000" />
+      <workItem from="1607600940646" duration="854000" />
+      <workItem from="1607690318283" duration="87000" />
+      <workItem from="1607690535268" duration="1641000" />
+>>>>>>> 234200027a8a9977ebe21de827068790af314a1c
     </task>
     <task id="LOCAL-00001" summary="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
       <created>1606528563454</created>
@@ -106,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606528563454</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Révision fonction ajouter tache privée, ajout sur pageErreur, rendu n°1.">
+      <created>1607091821966</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607091821966</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +149,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout fonctionnalitées ajouter/supprimer liste publique/privée." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout fonctionnalitées ajouter/supprimer liste publique/privée." />
+    <MESSAGE value="Révision fonction ajouter tache privée, ajout sur pageErreur, rendu n°1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Révision fonction ajouter tache privée, ajout sur pageErreur, rendu n°1." />
   </component>
   <component name="WindowStateProjectService">
     <state x="667" y="163" key="#PHP" timestamp="1606520953711">
@@ -156,20 +180,24 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1605775820306" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606528567656">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1607091826220">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605794382725" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1606528567656" />
-    <state x="733" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607087942113">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1607091826220" />
+    <state x="733" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607091842929">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605707716363" />
+<<<<<<< HEAD
     <state x="733" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1607087942113" />
     <state x="486" y="183" key="refactoring.ChangeSignatureDialog" timestamp="1607350616700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="486" y="183" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1607350616700" />
+=======
+    <state x="733" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1607091842929" />
+>>>>>>> 234200027a8a9977ebe21de827068790af314a1c
     <state x="616" y="240" key="run.anything.popup" timestamp="1606523647504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

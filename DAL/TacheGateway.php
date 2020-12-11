@@ -140,4 +140,32 @@ class TacheGateway
         return $TU;
     }
 
+    public function cocherTache(string $nom,string $liste){
+        $query='SELECT IdListePublic from ListesPublique WHERE titre=:liste';
+        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $IdListe=$row['IdListePublic'];
+        }
+        $query='SELECT IdTache from ListeTachePublic WHERE IdListe=:idListe and IdTache=(SELECT IdTache from Tache where nom=:nom)';
+        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT),array(':nom' => array($nom, PDO::PARAM_STR))));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $IdListe=$row['IdTache'];
+        }
+        $query='SELECT Effectue FROM Tache where IdTache=:idTache ';
+        $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $Effectue=$row['Effectue'];
+        }
+        if($Effectue==1){
+            $query='Update Tache set Effectue=0 where IdTache=:IdTache';
+            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        }else{
+            $query='Update Tache set Effectue=1 where IdTache=:IdTache';
+            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        }
+
+    }
 }

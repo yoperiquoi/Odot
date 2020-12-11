@@ -146,4 +146,34 @@ class UtilisateurGateway
         $query='INSERT INTO ListesTaches VALUES(:id,:email,:nom)';
         $this->con->executeQuery($query,array(':email' => array($email,PDO::PARAM_STR),':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
     }
+
+
+    public function cocherTache(string $nom,string $liste){
+        $query='SELECT IdListeTache from ListesTache WHERE titre=:liste';
+        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $IdListe=$row['IdListePublic'];
+        }
+        $query='SELECT IdTache from ListeTachePrivee WHERE IdListe=:idListe and IdTache=(SELECT IdTache from TachePrivee where nom=:nom)';
+        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $IdListe=$row['IdTache'];
+        }
+        $query='SELECT Effectue FROM TachePrivee where IdTache=:idTache ';
+        $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $Effectue=$row['Effectue'];
+        }
+        if($Effectue==1){
+            $query='Update TachePrivee set Effectue=0 where IdTache=:IdTache';
+            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        }else{
+            $query='Update TachePrivee set Effectue=1 where IdTache=:IdTache';
+            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        }
+
+    }
 }
