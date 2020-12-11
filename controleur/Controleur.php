@@ -42,8 +42,8 @@ class Controleur
                     break;
 
                 case "pageConnection":
-                    if(isset($_SESSION)){
-                        $this->pagePrivee();
+                    if(isset($_SESSION['Utilisateur'])){
+                       $this->pagePrivee();
                     }else {
                         $this->pageConnection();
                     }
