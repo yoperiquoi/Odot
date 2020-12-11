@@ -20,19 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33380bfa-f28c-429b-8cf1-8025c8b624af" name="Default Changelist" comment="Révision et finition des diagrammes, ajout d'un page d'erreur pas encore fonctionnel et de l'affichage d'erreur sur la page principale.">
-      <change afterPath="$PROJECT_DIR$/vue/pageErreur/CSSPageErreur.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue/pagePrivee/CSSPagePrivee.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue/pagePrincipale/JSPagePrincipale.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAL/UtilisateurGateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/UtilisateurGateway.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Validation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controleur/Controleur.php" beforeDir="false" afterPath="$PROJECT_DIR$/controleur/Controleur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPrivees.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPrivees.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPubliques.php" beforeDir="false" afterPath="$PROJECT_DIR$/modeles/gestionPersistance/ModeleTachesPubliques.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/pageConnexion/CSSPageConnexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/CSSPageConnexion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/pageConnexion/PageConnexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageConnexion/PageConnexion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/pageErreur/PageErreur.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageErreur/PageErreur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/pageInscription/CSSPageInscription.css" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/CSSPageInscription.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue/pageInscription/PageInscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pageInscription/PageInscription.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrincipale/PagePrincipale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" beforeDir="false" afterPath="$PROJECT_DIR$/vue/pagePrivee/PagePrivee.php" afterDir="false" />
     </list>
@@ -47,9 +39,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -102,6 +94,10 @@
       <workItem from="1606927231429" duration="973000" />
       <workItem from="1606995752518" duration="1508000" />
       <workItem from="1607085559528" duration="5030000" />
+      <workItem from="1607346145112" duration="6061000" />
+      <workItem from="1607463943081" duration="1373000" />
+      <workItem from="1607621384383" duration="621000" />
+      <workItem from="1607690413873" duration="1903000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout fonctionnalitées ajouter/supprimer liste publique/privée.">
       <created>1606528563454</created>
@@ -170,6 +166,10 @@
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605707716363" />
     <state x="733" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1440.174.1440.860@0.0.1920.1040" timestamp="1607087942113" />
+    <state x="486" y="183" key="refactoring.ChangeSignatureDialog" timestamp="1607350616700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="486" y="183" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1607350616700" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1606523647504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
