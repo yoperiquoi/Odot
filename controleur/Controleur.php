@@ -2,7 +2,7 @@
 
 namespace controleur;
 
-use modeles\Modele;
+use modele\Modele;
 use config\Validation;
 use \PDOException;
 

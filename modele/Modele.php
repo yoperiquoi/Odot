@@ -1,6 +1,6 @@
 <?php
 
-namespace modeles;
+namespace modele;
 
 use DAL\ListeGateway;
 use DAL\TacheGateway;

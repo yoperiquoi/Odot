@@ -15,7 +15,7 @@ $myLibLoader = new SplClassLoader('DAL', './');
 $myLibLoader->register();
 $myLibLoader = new SplClassLoader('DAL\metier', './');
 $myLibLoader->register();
-$myLibLoader = new SplClassLoader('modeles', './');
+$myLibLoader = new SplClassLoader('modele', './');
 $myLibLoader->register();
 
 $cont = new controleur\Controleur();
