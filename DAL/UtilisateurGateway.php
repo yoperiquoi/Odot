@@ -2,10 +2,8 @@
 
 namespace DAL;
 
-use modeles\gestionUtilisateur\Utilisateur;
-use modeles\gestionTaches\ListeTache;
-use modeles\gestionTaches\Tache;
-use PDO;
+use DAL\metier\Utilisateur;
+use \PDO;
 
 class UtilisateurGateway
 {

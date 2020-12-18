@@ -2,9 +2,7 @@
 
 namespace DAL;
 
-use modeles\gestionTaches\Tache;
-use modeles\gestionTaches\ListeTache;
-use PDO;
+use \PDO;
 
 class TacheGateway
 {
@@ -139,7 +137,7 @@ class TacheGateway
             $IdListe=$row['IdListePublic'];
         }
         $query='SELECT IdTache from ListeTachePrivee WHERE IdListe=:idListe and IdTache=(SELECT IdTache from TachePrivee where nom=:nom)';
-        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT)));
+        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT), ':nom' => array($nom, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
             $IdListe=$row['IdTache'];

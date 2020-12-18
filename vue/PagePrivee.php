@@ -10,8 +10,8 @@
     <title>Odot</title>
 
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="Images/OdotShortcut.jpg">
-    <link href="vue/pagePrivee/CSSPagePrivee.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="vue/Images/OdotShortcut.jpg">
+    <link href="vue/css/CSSPagePrivee.css" rel="stylesheet">
 
     <meta name="theme-color" content="#563d7c">
 

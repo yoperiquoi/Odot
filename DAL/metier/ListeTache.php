@@ -1,6 +1,6 @@
 <?php
 
-namespace modeles\gestionTaches;
+namespace DAL\metier;
 
 class ListeTache
 {

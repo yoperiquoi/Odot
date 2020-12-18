@@ -11,11 +11,11 @@
     <title>Odot</title>
 
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="Images/OdotShortcut.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="vue/Images/OdotShortcut.jpg">
 
     <meta name="theme-color" content="#563d7c">
 
-    <link href="vue/PagePrincipale/CSSPagePrincipale.css" rel="stylesheet">
+    <link href="vue/css/CSSPagePrincipale.css" rel="stylesheet">
 </head>
 
 <body class="bg">

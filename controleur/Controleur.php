@@ -2,10 +2,9 @@
 
 namespace controleur;
 
-use modeles\gestionPersistance\ModeleTachesPrivees;
-use modeles\gestionPersistance\ModeleTachesPubliques;
+use modeles\Modele;
 use config\Validation;
-use PDOException;
+use \PDOException;
 
 
 class Controleur
@@ -105,7 +104,7 @@ class Controleur
 
     private function pagePrincipale() {
         global $rep, $vues, $dataPageErreur, $dataVueErreur, $dataVueErreurNom; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPubliques();
+        $m = new Modele();
 
         try {
             $ListesPublique = $m->toutesLesListes();
@@ -119,7 +118,7 @@ class Controleur
 
     private function ajouterListePublique() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPubliques();
+        $m = new Modele();
 
         $Nom = $_POST['AjoutListe'];
 
@@ -149,7 +148,7 @@ class Controleur
 
     private function supprimerListePublique() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPubliques();
+        $m = new Modele();
 
         $Nom = $_POST['NomListe'];
 
@@ -181,7 +180,7 @@ class Controleur
 
     private function ajouterTachePublique() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPubliques();
+        $m = new Modele();
 
         $Nom = $_POST['Ajout'];
         $Liste = $_POST['Liste'];
@@ -213,7 +212,7 @@ class Controleur
 
     private function supprimerTachePublique() {
         global $rep, $vues, $dataPageErreur, $dataVueErreur; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPubliques();
+        $m = new Modele();
 
         $Nom = $_POST['NomTache'];
 
@@ -246,7 +245,7 @@ class Controleur
     private function cocheTachePublique() {
         global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
 
-        $m = new ModeleTachesPubliques();
+        $m = new Modele();
 
         $Nom = $_POST['NomTache'];
 
@@ -274,7 +273,7 @@ class Controleur
 
     private function seConnecter() {
         global $rep, $vues, $dataVueErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         $Email = $_POST['inputEmail'];
         $Mdp = $_POST['inputPassword'];
@@ -308,7 +307,7 @@ class Controleur
 
     private function pagePrivee() {
         global $rep, $vues, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
             require($rep . $vues['erreur']);
@@ -316,7 +315,7 @@ class Controleur
         }
 
         try {
-            $ListesPrivee = $m->toutesLesListes($_SESSION['Utilisateur']);
+            $ListesPrivee = $m->toutesLesListesUtilisateur($_SESSION['Utilisateur']);
         } catch (\Exception $e) {
             $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
             require($rep . $vues['erreur']);
@@ -327,7 +326,7 @@ class Controleur
 
     private function ajouterListePrivee() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         $Nom = $_POST['AjoutListe'];
 
@@ -336,14 +335,14 @@ class Controleur
                 require($rep . $vues['erreur']);
                 return;
             }
-            $m->ajouterListe($Nom, $_SESSION['Utilisateur']);
+            $m->ajouterListeUtilisateur($Nom, $_SESSION['Utilisateur']);
         }
         $this->pagePrivee();
     }
 
     private function supprimerListePrivee() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         $Nom = $_POST['NomListe'];
 
@@ -358,7 +357,7 @@ class Controleur
         }
 
         try {
-            $m->supprimerListe($Nom, $_SESSION['Utilisateur']);
+            $m->supprimerListeUtilisateur($Nom, $_SESSION['Utilisateur']);
         } catch (\Exception $e) {
             $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
             require($rep . $vues['erreur']);
@@ -370,14 +369,14 @@ class Controleur
 
     private function ajouterTachePrivee() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         $Nom = $_POST['Ajout'];
         $Liste = $_POST['Liste'];
 
         if (Validation::val_tache($Nom, $Liste, $dataVueErreur, $dataVueErreurNom)) {
             try {
-                $m->ajouterTache($Liste, $Nom,$_SESSION['Utilisateur']);
+                $m->ajouterTacheUtilisateur($Liste, $Nom,$_SESSION['Utilisateur']);
             } catch (\Exception $e) {
                 $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
                 require($rep . $vues['erreur']);
@@ -390,7 +389,7 @@ class Controleur
 
     private function supprimerTachePrivee() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         $Nom = $_POST['NomTache'];
 
@@ -417,7 +416,7 @@ class Controleur
 
     private function creerUtilisateur() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
-        $m = new ModeleTachesPrivees();
+        $m = new Modele();
 
         $Email = $_POST['inputEmail'];
         $Mdp = $_POST['inputPassword'];

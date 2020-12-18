@@ -1,6 +1,6 @@
 <?php
 
-namespace modeles\gestionUtilisateur;
+namespace DAL\metier;
 
 class Utilisateur
 {

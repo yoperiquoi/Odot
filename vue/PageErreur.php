@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Erreur</title>
-    <link href="vue/pageErreur/CSSPageErreur.css" rel="stylesheet">
+    <link href="vue/css/CSSPageErreur.css" rel="stylesheet">
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="?action">Odot</a>

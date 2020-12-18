@@ -4,8 +4,9 @@
 namespace DAL;
 
 
-use modeles\gestionTaches\ListeTache;
-use modeles\gestionTaches\Tache;
+use DAL\metier\ListeTache;
+use DAL\metier\Tache;
+use \PDO;
 
 class ListeGateway
 {
