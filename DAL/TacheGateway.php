@@ -41,33 +41,6 @@ class TacheGateway
 
     }
 
-    public function findAllListes():array{
-        $query='SELECT * FROM ListesPublique';
-        $this->con->executeQuery($query,array());
-        $results=$this->con->getResults();
-        if($results==NULL)return array();
-        foreach ($results as $row){
-            $Titre=$row['Titre'];
-            $query='SELECT * FROM ListeTachePublic where IdListePublique=:id';
-            $this->con->executeQuery($query,array(':id' => array($row['IdListePublique'], PDO::PARAM_INT)));
-            $resultats=$this->con->getResults();
-            foreach ($resultats as $row){
-                $query='SELECT Nom,Effectue FROM Tache where IdTache=:id';
-                $this->con->executeQuery($query,array(':id' => array($row['IdTache'], PDO::PARAM_INT)));
-                $Tache=$this->con->getResults();
-                foreach ($Tache as $value){
-                    $Taches[]=new Tache($value['Nom'],$value['Effectue']);
-                }
-            }
-            if(empty($Taches)){
-                $ListesTachesPublique[]=new ListeTache($Titre,$Taches=[]);
-            }else{
-                $ListesTachesPublique[]=new ListeTache($Titre,$Taches);
-            }
-            $Taches=[];
-        }
-        return $ListesTachesPublique;
-    }
 
     public function delTache(string $nom): bool{
         $query='SELECT IdTache FROM tache WHERE Nom=:nom';
@@ -84,61 +57,6 @@ class TacheGateway
         return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
     }
 
-    public function delListe(string $nom){
-        $query='SELECT IdListePublique FROM ListesPublique where Titre=:nom';
-        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
-        $result=$this->con->getResults();
-        foreach ($result as $value){
-            $IdListe=$value['IdListePublique'];
-        }
-        if(!isset($IdListe)) throw new \PDOException("Pas de liste avec ce nom", 1);
-        $query='SELECT IdTache FROM ListeTachePublic where IdListePublique=:IdListe';
-        $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
-        $result=$this->con->getResults();
-        foreach ($result as $value){
-            $query='SELECT Nom from Tache WHERE IdTache=:IdTache';
-            $this->con->executeQuery($query, array(':IdTache' => array($value['IdTache'],PDO::PARAM_STR)));
-            $results=$this->con->getResults();
-            foreach ($results as $nom){
-                $this->delTache($nom['Nom']);
-            }
-        }
-        $query='DELETE FROM ListesPublique WHERE IdListePublique=:IdListe';
-        $this->con->executeQuery($query, array(':IdListe' => array($IdListe,PDO::PARAM_STR)));
-    }
-
-    public function nbTaches(){
-        $query='SELECT count(*) FROM Tache';
-        $this->con->executeQuery($query,array());
-        $results=$this->con->getResults();
-        return $results[0]['count(*)'];
-    }
-
-    public function ajouterListe(string $nom){
-        $query='SELECT IdListePublique FROM ListesPublique WHERE IdListePublique=(SELECT MAX(IdListePublique) FROM ListesPublique)';
-        $this->con->executeQuery($query,array());
-        $result=$this->con->getResults();
-        if($result==NULL){
-            $Id=1;
-        }
-        else {
-            foreach ($result as $value) {
-                $Id = $value['IdListePublique'] + 1;
-            }
-        }
-        $query='INSERT INTO ListesPublique VALUES(:id,:nom)';
-        $this->con->executeQuery($query,array(':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
-    }
-
-    public function findTache(string $nom): Tache{
-        $query='SELECT * FROM Tache where nom=:nom';
-        $this->con->executeQuery($query,array(':nom' => array($nom, PDO::PARAM_STR)));
-        $results=$this->con->getResults();
-        foreach ($results as $row){
-            $TU= new Tache($row['Nom'],$row['Effectue']);
-        }
-        return $TU;
-    }
 
     public function cocherTache(string $nom,string $liste){
         $query='SELECT IdListePublic from ListesPublique WHERE titre=:liste';
@@ -164,6 +82,79 @@ class TacheGateway
             $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
         }else{
             $query='Update Tache set Effectue=1 where IdTache=:IdTache';
+            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        }
+
+    }
+
+    public function ajoutTacheUtilisateur(string $liste,string $nom, string $email) {
+        $query='SELECT IdTache FROM TACHEPRIVEE WHERE IdTache=(SELECT MAX(IdTache) from TACHEPrivee)';
+        $this->con->executeQuery($query,array());
+        $results=$this->con->getResults();
+        foreach ($results as $value){
+            $idTache=$value['IdTache'];
+        }
+        $idTache = 1;
+        $query='INSERT INTO TachePrivee values (:idTache,:nom, false)';
+        $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT),':nom' => array($nom, PDO::PARAM_STR)));
+
+        $query = 'SELECT IdListeTache FROM ListesTaches where Titre=:liste and Email=:email';
+        $this->con->executeQuery($query, array(':liste' => array($liste, PDO::PARAM_STR),':email' => array($email, PDO::PARAM_STR)));
+        $resultats =$this->con->getResults();
+        foreach ($resultats as $idL) {
+            $query = 'INSERT INTO ListeTachePrivee values (:idL, :idT)';
+            $this->con->executeQuery($query, array(':idL' => array($idL['IdListeTache'], PDO::PARAM_INT), ':idT' => array($idTache, PDO::PARAM_INT)));
+        }
+
+    }
+
+    public function delTacheUtilisateur(string $nom): bool{
+        $query='SELECT IdTache FROM tachePrivee WHERE Nom=:nom';
+        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        foreach ($results as $value){
+            $idTache=$value['IdTache'];
+        }
+
+        $query='SELECT IdListeTachesPrivee FROM ListeTachePrivee where IdTache=:id ';
+        $this->con->executeQuery($query,array(':id'=>array($idTache, PDO::PARAM_INT)));
+        $resultats =$this->con->getResults();
+        foreach ($resultats as $idL) {
+            $id=$idL['IdListeTachesPrivee'];
+        }
+
+        $query='DELETE FROM ListeTachePrivee where IdTache=:id';
+        $this->con->executeQuery($query,array(':id'=>array($idTache, PDO::PARAM_INT)));
+
+        $query = 'DELETE FROM TachePrivee where nom=:nom';
+        return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
+        return TRUE;
+    }
+
+    public function cocherTacheUtilisateur(string $nom,string $liste){
+        $query='SELECT IdListeTache from ListesTache WHERE titre=:liste';
+        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $IdListe=$row['IdListePublic'];
+        }
+        $query='SELECT IdTache from ListeTachePrivee WHERE IdListe=:idListe and IdTache=(SELECT IdTache from TachePrivee where nom=:nom)';
+        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $IdListe=$row['IdTache'];
+        }
+        $query='SELECT Effectue FROM TachePrivee where IdTache=:idTache ';
+        $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        $results=$this->con->getResults();
+        foreach ($results as $row){
+            $Effectue=$row['Effectue'];
+        }
+        if($Effectue==1){
+            $query='Update TachePrivee set Effectue=0 where IdTache=:IdTache';
+            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        }else{
+            $query='Update TachePrivee set Effectue=1 where IdTache=:IdTache';
             $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
         }
 

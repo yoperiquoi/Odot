@@ -4,43 +4,49 @@
 namespace modeles\gestionPersistance;
 
 
+use DAL\ListeGateway;
+use DAL\TacheGateway;
 use DAL\UtilisateurGateway;
 
 class ModeleTachesPrivees
 {
-    private $gateway;
+    private $UtilisateurGateway;
+    private $ListeGateway;
+    private $TacheGateway;
 
     public function __construct()
     {
-        $this->gateway = new UtilisateurGateway();
+        $this->UtilisateurGateway = new UtilisateurGateway();
+        $this->TacheGateway = new TacheGateway();
+        $this->ListeGateway = new ListeGateway();
     }
 
     public function trouverUtilisateur(String $Email, String $Mdp) {
-        return $this->gateway->findUtilisateur($Email, $Mdp);
+        return $this->UtilisateurGateway->findUtilisateur($Email, $Mdp);
     }
 
     public function toutesLesListes(String $session) {
-        return $this->gateway->findAllListesUtilisateur($session);
+        return $this->ListeGateway->findAllListesUtilisateur($session);
     }
 
     public function ajouterListe(String $Nom, String $session) {
-        $this->gateway->ajouterListe($Nom, $session);
+        $this->ListeGateway->ajouterListeUtilisateur($Nom, $session);
     }
 
     public function supprimerListe(String $Nom, String $session) {
-        $this->gateway->delListe($Nom, $session);
+        $this->ListeGateway->delListeUtilisateur($Nom, $session);
     }
 
     public function ajouterTache(String $Liste, String $Nom, String $Email) {
-        $this->gateway->ajoutTache($Liste, $Nom,$Email);
+        $this->TacheGateway->ajoutTacheUtilisateur($Liste, $Nom,$Email);
     }
 
     public function supprimerTache(String $Nom) {
-        $this->gateway->delTache($Nom);
+        $this->TacheGateway->delTache($Nom);
     }
 
     public function AjouterUtilisateur(String $Email, String $Pseudo, String $Mdp) {
-        $this->gateway->ajoutUtilisateur($Email, $Pseudo, $Mdp);
+        $this->UtilisateurGateway->ajoutUtilisateur($Email, $Pseudo, $Mdp);
     }
 
 

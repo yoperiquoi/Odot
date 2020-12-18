@@ -5,34 +5,37 @@ namespace modeles\gestionPersistance;
 
 
 use DAL\TacheGateway;
+use DAL\ListeGateway;
 
 class ModeleTachesPubliques
 {
-    private $gateway;
+    private $ListeGateway;
+    private $TacheGateway;
 
     public function __construct()
     {
-        $this->gateway = new TacheGateway();
+        $this->TacheGateway = new TacheGateway();
+        $this->ListeGateway = new ListeGateway();
     }
 
     public function toutesLesListes() {
-        return $this->gateway->findAllListes();
+        return $this->ListeGateway->findAllListes();
     }
 
     public function ajouterListe(String $Nom) {
-        $this->gateway->ajouterListe($Nom);
+        $this->ListeGateway->ajouterListe($Nom);
     }
 
     public function supprimerListe(String $Nom) {
-        $this->gateway->delListe($Nom);
+        $this->ListeGateway->delListe($Nom);
     }
 
     public function ajouterTache(String $Liste, String $Nom) {
-        $this->gateway->ajoutTache($Liste, $Nom);
+        $this->TacheGateway->ajoutTache($Liste, $Nom);
     }
 
     public function supprimerTache(String $Nom) {
-        $this->gateway->delTache($Nom);
+        $this->TacheGateway->delTache($Nom);
     }
 
 }
