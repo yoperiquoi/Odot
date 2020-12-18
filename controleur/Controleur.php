@@ -14,8 +14,10 @@ class Controleur
     {
 
         global $dataPageErreur; // nécessaire pour utiliser variables globales
-// on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-        session_start();
+        // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
         try {
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
@@ -39,6 +41,9 @@ class Controleur
 
                 case "supprimerTachePublique":
                     $this->supprimerTachePublique();
+                    break;
+
+                case "cocheTachePublique":
                     break;
 
                 case "pageConnection":
@@ -233,6 +238,30 @@ class Controleur
             $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
             require($rep . $vues['erreur']);
             return;
+        }
+
+        $this->pagePrincipale();
+    }
+
+    private function cocheTachePublique() {
+        global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
+
+        $m = new ModeleTachesPubliques();
+
+        $Nom = $_POST['NomTache'];
+
+        if (Validation::val_cocheTache($Nom, $liste, $dataPageErreur)) {
+            try {
+                $m->cocherTache($Nom, $liste);
+            } catch (PDOException $e) {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            } catch (\Exception $e) {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                require($rep . $vues['erreur']);
+                return;
+            }
         }
 
         $this->pagePrincipale();

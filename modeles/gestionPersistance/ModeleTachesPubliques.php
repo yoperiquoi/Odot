@@ -38,4 +38,8 @@ class ModeleTachesPubliques
         $this->TacheGateway->delTache($Nom);
     }
 
+    public function cocherTache(String $Nom, String $Liste) {
+        $this->gateway->cocherTache($Nom, $Liste);
+    }
+
 }

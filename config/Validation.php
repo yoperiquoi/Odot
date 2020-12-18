@@ -154,12 +154,12 @@ class Validation
     public static function val_suppressionTache(?string &$tache, &$dataPageErreur)
     {
         if (!isset($tache) || $tache == "") {
-            $dataPageErreur[] = "La liste à supprimer n'a pas de nom";
+            $dataPageErreur[] = "La tâche à supprimer n'a pas de nom";
             return false;
         }
 
         if ($tache != filter_var($tache, FILTER_SANITIZE_STRING)) {
-            $dataPageErreur[] = "La liste à supprimer a un nom invalide";
+            $dataPageErreur[] = "La tâche à supprimer a un nom invalide";
             return false;
         }
 
@@ -172,4 +172,35 @@ class Validation
         return true;
     }
 
+    public static function val_cocheTache(?string &$tache, ?string &$liste, &$dataPageErreur)
+    {
+        if (!isset($tache) || $tache == "") {
+            $dataPageErreur[] = "La tâche à cocher n'a pas de nom";
+            return false;
+        }
+
+        if ($tache != filter_var($tache, FILTER_SANITIZE_STRING)) {
+            $dataPageErreur[] = "La tâche à cocher a un nom invalide";
+            return false;
+        }
+
+        $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
+        if (preg_match($expression, $tache) != 1) {
+            $dataPageErreur[] = "La tâche à cocher a un nom invalide";
+            return false;
+        }
+
+        if (!isset($liste) || $liste == "" || $liste != filter_var($liste, FILTER_SANITIZE_STRING) || preg_match($expression, $liste) != 1) {
+            $dataVueErreur['erreurTache'] = "Erreur : la liste dans laquelle ajouter ne semble pas correcte";
+            $dataVueErreurNom['erreurTache'] = $liste;
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function val_cocheTacheUtilisateur(?string &$tache, ?string &$liste, &$email, &$dataPageErreur) {
+        Validation::val_cocheTache($tache, $liste, $dataPageErreur);
+        Validation::val_email($email, $dataPageErreur);
+    }
 }

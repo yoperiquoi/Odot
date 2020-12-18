@@ -49,5 +49,7 @@ class ModeleTachesPrivees
         $this->UtilisateurGateway->ajoutUtilisateur($Email, $Pseudo, $Mdp);
     }
 
-
+    public function cocherTache(String $Nom, String $Liste, String $Email) {
+        $this->gateway->cocherTache($Nom, $Liste, $Email);
+    }
 }

@@ -54,7 +54,7 @@
         <main role='main' class='container bg-white py-2 px-5 border my-5'>
         <form method='post' >
             <input type='text' name='NomListe' value='$ListePrivee' hidden>
-            <button id='delete' name='action' value='supprimerListePrivee' class='close justify-content-end col-sm1' aria-label='Close'>
+            <button id='delete' name='action' value='supprimerListePrivee' class='mt-3 close justify-content-end col-sm1' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
             </button>
         </form>

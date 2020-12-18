@@ -55,9 +55,9 @@
             foreach ($ListesPublique as $ListePublique) {
                 print"
             <main role='main' class='container bg-white py-2 px-5 border my-5'>
-            <form method='post' >
+            <form method='post'>
                     <input type='text' name='NomListe' value='$ListePublique' hidden>
-                    <button id='delete' name='action' value='supprimerListePublique' class='close justify-content-end col-sm1' aria-label='Close'>
+                    <button id='delete' name='action' value='supprimerListePublique' class='mt-3 close justify-content-end col-sm1' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button>
             </form>
@@ -73,28 +73,34 @@
                     }
                 }
 
-    print "<ul class='list-unstyled shadow-sm mb-1'>";
+    print "<ul class='list-unstyled shadow-sm mb-1 todo-list'>";
                 if ($ListePublique->Taches != NULL) {
                     $TachesPublique = $ListePublique->Taches;
                     foreach ($TachesPublique as $Tache) {
                         if ($Tache->Effectue == false) {
-                            print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
-                    <input type='checkbox' class='ml-4'>
-                    <label class='ml-2 pt-1 label-list col-sm-10'>$Tache</label>
-                    <form method='post'>
-                    <input type='text' name='NomTache' value='$Tache' hidden>
-                    <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
+                            print "
+                <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
+                    <input type='checkbox' class='ml-4 checkbox'>
+                    <label class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
+                    <form method='post' >
+                        <input type='text' name='NomTache' value='$Tache' hidden>
+                        <button id='delete' name='action' value='supprimerTachePrivee' class='close justify-content-end col-sm1' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
                     </form>
-                    </li>";
+                </li>";
                         } else {
                             print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
-                    <input type='checkbox' class='ml-4' checked>
-                    <label class='ml-2 pt-1 label-list col-sm-10'>$Tache</label>
+                    <form method='post' >
+                        <input type='text' name='NomTache' value='$Tache' hidden>
+                        <button class='p-0 d-flex btn' name='action' value='cocheTachePublique'>
+                            <input type='checkbox' class='ml-2 mt-2'>
+                            <label class='mx-2 pt-1 label-list'>$Tache</label>
+                        </button>
+                    </form>
                     <form method='post' >
                     <input type='text' name='NomTache' value='$Tache' hidden>
-                    <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
+                    <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm-1' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button>
                     </form>
