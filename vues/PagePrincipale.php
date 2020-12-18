@@ -11,11 +11,11 @@
     <title>Odot</title>
 
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="vue/Images/OdotShortcut.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="vues/Images/OdotShortcut.jpg">
 
     <meta name="theme-color" content="#563d7c">
 
-    <link href="vue/css/CSSPagePrincipale.css" rel="stylesheet">
+    <link href="vues/css/CSSPagePrincipale.css" rel="stylesheet">
 </head>
 
 <body class="bg">
@@ -67,7 +67,7 @@
                 <input type='text' name='Ajout' class='form-control todo-list-input mr-1' placeholder='Nouvelle Tache'>
                 <button type='submit' name='action' value='ajouterTachePublique' class='btn btn-primary'>Ajouter</button>
             </form>";
-                if(isset($dataVueErreur['erreurTache'])) {
+                if(isset($dataVueErreurNom['erreurTache'])) {
                     if($dataVueErreurNom['erreurTache'] == $ListePublique) {
                         print "<p class='m-0 ml-4 text-danger font-weight-bold'>".$dataVueErreur['erreurTache']."</p>";
                     }

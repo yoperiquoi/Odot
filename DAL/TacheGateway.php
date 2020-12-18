@@ -92,7 +92,7 @@ class TacheGateway
         foreach ($results as $value){
             $idTache=$value['IdTache'];
         }
-        $idTache = 1;
+        if(!isset($idTache) || $idTache == null) $idTache = 1;
         $query='INSERT INTO TachePrivee values (:idTache,:nom, false)';
         $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT),':nom' => array($nom, PDO::PARAM_STR)));
 
@@ -103,7 +103,6 @@ class TacheGateway
             $query = 'INSERT INTO ListeTachePrivee values (:idL, :idT)';
             $this->con->executeQuery($query, array(':idL' => array($idL['IdListeTache'], PDO::PARAM_INT), ':idT' => array($idTache, PDO::PARAM_INT)));
         }
-
     }
 
     public function delTacheUtilisateur(string $nom): bool{

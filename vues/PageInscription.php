@@ -10,14 +10,14 @@
 
     <!-- Bootstrap core CSS -->
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="vue/Images/OdotLogo.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="vues/Images/OdotLogo.jpg">
 
 
     <meta name="theme-color" content="#563d7c">
 
 
     <!-- Custom styles for this template -->
-    <link href="vue/css/CSSPageInscription.css" rel="stylesheet">
+    <link href="vues/css/CSSPageInscription.css" rel="stylesheet">
 </head>
 <body class="bg">
 
@@ -43,7 +43,7 @@
 </nav>
 <main role='main' class='container bg-white py-2 px-5 border my-5  p-5 text-center'>
     <form class="form-signin" method="POST" >
-        <img class="mb-4" src="vue/Images/OdotLogo.jpg" alt="" width="75" height="75">
+        <img class="mb-4" src="vues/Images/OdotLogo.jpg" alt="" width="75" height="75">
         <h1 class="h3 mb-3 font-weight-normal">Inscrivez-vous !</h1>
         <label for="inputEmail" class="sr-only">Adresse mail</label>
         <input type="email" name="inputEmail" class="form-control mb-1 todo-list-input" placeholder="Adresse mail" required autofocus/>

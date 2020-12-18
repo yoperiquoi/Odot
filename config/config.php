@@ -16,17 +16,17 @@ $dsn = 'mysql:host=localhost;dbname=OdotTest';
 //Vues
 
 $vues['index']='index.php';
-$vues['erreur']='vue/PageErreur.php';
-$vues['pageConnexion']='vue/PageConnexion.php';
-$vues['pageInscription']='vue/PageInscription.php';
-$vues['pagePrincipale']='vue/PagePrincipale.php';
-$vues['pagePrivee']='vue/PagePrivee.php';
+$vues['erreur']='vues/PageErreur.php';
+$vues['pageConnexion']='vues/PageConnexion.php';
+$vues['pageInscription']='vues/PageInscription.php';
+$vues['pagePrincipale']='vues/PagePrincipale.php';
+$vues['pagePrivee']='vues/PagePrivee.php';
 /*
 //CSS
 
-$css['pageConnexion']='vue/pageConnexion/CSSPageConnexion.php';
-$css['pageInscription']='vue/pageInscription/CSSPageInscription.php';
-$css['pagePrincipale']='vue/pagePrincipale/CSSPagePrincipale.php';
+$css['pageConnexion']='vues/pageConnexion/CSSPageConnexion.php';
+$css['pageInscription']='vues/pageInscription/CSSPageInscription.php';
+$css['pagePrincipale']='vues/pagePrincipale/CSSPagePrincipale.php';
 
 //BootStrap
 
