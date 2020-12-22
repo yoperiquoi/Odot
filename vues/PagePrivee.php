@@ -35,6 +35,9 @@
             </li>
         </ul>
     </div>
+    <a href="?action=seDeconnecter" class="form-inline mt-2 mt-md-0" style="text-decoration: none">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se Déconnecter</button>
+    </a>
 </nav>
 
 <main role='main' class='container bg-white py-3 px-5 border my-5'>
@@ -79,6 +82,7 @@
                         <label class='ml-2 pt-1 label-list col-sm-10'>$Tache</label>
                         <form method='post' >
                         <input type='text' name='NomTache' value='$Tache' hidden>
+                        <input type='text' name='IdTache' value='$Tache->Id' hidden>
                         <button id='delete' name='action' value='supprimerTachePrivee' class='close justify-content-end col-sm1' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                         </button>

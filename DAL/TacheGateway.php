@@ -90,7 +90,7 @@ class TacheGateway
         $this->con->executeQuery($query,array());
         $results=$this->con->getResults();
         foreach ($results as $value){
-            $idTache=$value['IdTache'];
+            $idTache=$value['IdTache']+1;
         }
         if(!isset($idTache) || $idTache == null) $idTache = 1;
         $query='INSERT INTO TachePrivee values (:idTache,:nom, false)';
@@ -105,37 +105,26 @@ class TacheGateway
         }
     }
 
-    public function delTacheUtilisateur(string $nom): bool{
-        $query='SELECT IdTache FROM tachePrivee WHERE Nom=:nom';
-        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
-        $results=$this->con->getResults();
-        foreach ($results as $value){
-            $idTache=$value['IdTache'];
-        }
-
-        $query='SELECT IdListeTachesPrivee FROM ListeTachePrivee where IdTache=:id ';
-        $this->con->executeQuery($query,array(':id'=>array($idTache, PDO::PARAM_INT)));
-        $resultats =$this->con->getResults();
-        foreach ($resultats as $idL) {
-            $id=$idL['IdListeTachesPrivee'];
-        }
+    public function delTacheUtilisateur(string $nom,int $id): bool{
+        $query='SELECT * from TachePrivee WHERE nom=:nom and IdTache=:id';
+        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR), ':id' => array($id, PDO::PARAM_INT)));
+        $this->con->getResults();
 
         $query='DELETE FROM ListeTachePrivee where IdTache=:id';
-        $this->con->executeQuery($query,array(':id'=>array($idTache, PDO::PARAM_INT)));
+        $this->con->executeQuery($query,array(':id'=>array($id, PDO::PARAM_INT)));
 
-        $query = 'DELETE FROM TachePrivee where nom=:nom';
-        return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
-        return TRUE;
+        $query = 'DELETE FROM TachePrivee where nom=:nom and IdTache=:id';
+        return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR),':id' => array($id, PDO::PARAM_INT)));
     }
 
-    public function cocherTacheUtilisateur(string $nom,string $liste){
-        $query='SELECT IdListeTache from ListesTache WHERE titre=:liste';
+    public function cocherTacheUtilisateur(string $nom,int $liste){
+        $query='SELECT IdListeTaches from ListesTache WHERE titre=:liste';
         $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
             $IdListe=$row['IdListePublic'];
         }
-        $query='SELECT IdTache from ListeTachePrivee WHERE IdListe=:idListe and IdTache=(SELECT IdTache from TachePrivee where nom=:nom)';
+        $query='SELECT IdTache from ListeTachePrivee WHERE IdListeTachesPrivee=:idListe and IdTache=(SELECT IdTache from TachePrivee where nom=:nom)';
         $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT), ':nom' => array($nom, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){

@@ -53,11 +53,6 @@
         <input type="password" name="inputPassword" class="form-control" placeholder="Mot de passe" required/>
         <p class="text-lg-left ml-2 text-danger font-weight-bold <?php print isset($dataVueErreur['erreurMdp']) ? "" : "d-none"; ?>" >
             <?php print isset($dataVueErreur['erreurMdp']) ? $dataVueErreur['erreurMdp'] : ""; ?></p>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Se rappeler de moi
-            </label>
-        </div>
         <button name="action" value="seConnecter" class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
         <div class="mt-3">
             <a href="?action=pageInscription">Pas de compte ? Inscrivez-vous !</a>

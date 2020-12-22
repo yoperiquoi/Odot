@@ -12,7 +12,6 @@ class UtilisateurControleur
 {
     function __construct()
     {
-
         global $dataPageErreur; // nécessaire pour utiliser variables globales
         // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
         if (session_status() == PHP_SESSION_NONE) {
@@ -25,7 +24,11 @@ class UtilisateurControleur
             switch ($action) {
                 case NULL:
                 case "pagePrivee":
-                    $this->pagePrivee();
+                    if(isset($_SESSION['Utilisateur'])){
+                        $this->pagePrivee();
+                    }else{
+                        $this->pageConnection();
+                    }
                     break;
 
                 case "ajouterListePrivee":
@@ -62,6 +65,10 @@ class UtilisateurControleur
 
                 case "creerUtilisateur":
                     $this->creerUtilisateur();
+                    break;
+
+                case "seDeconnecter" :
+                    $this->seDeconnecter();
                     break;
 
                 //mauvaise action
@@ -180,6 +187,7 @@ class UtilisateurControleur
         $m = new Modele();
 
         $Nom = $_POST['NomTache'];
+        $Id = $_POST['IdTache'];
 
         if(!Validation::val_suppressionTache($Nom, $dataPageErreur)) {
             $this->erreur();
@@ -187,7 +195,7 @@ class UtilisateurControleur
         }
 
         try {
-            $m->supprimerTache($Nom);
+            $m->supprimerTacheUtilisateur($Nom,$Id);
         } catch (\Exception $e) {
             $dataPageErreur['erreurTache'] = "Erreur non prise en charge : " . $e->getMessage();
             $this->erreur();
@@ -216,7 +224,15 @@ class UtilisateurControleur
         }
 
         try {
-            $Utilisateur = $m->trouverUtilisateur($Email, $Mdp);
+            if($m->trouverUtilisateur($Email, $Mdp)){
+                $_SESSION['Utilisateur'] = $Email;
+                $this->pagePrivee();
+            }else{
+                $dataVueErreur['erreurMdp'] = "L'email ou le mot de passe n'est pas correct";
+                $_REQUEST['action'] = "pageConnection";
+                require ($rep . $vues['index']);
+                return;
+            }
         } catch (\Exception $e) {
             $dataVueErreur['erreurMdp'] = "L'email ou le mot de passe n'est pas correct";
             $_REQUEST['action'] = "pageConnection";
@@ -224,16 +240,13 @@ class UtilisateurControleur
             return;
         }
 
-        if($Utilisateur == null) {
-            $dataVueErreur['erreurMdp'] = "L'email ou le mot de passe n'est pas correct";
-            $_REQUEST['action'] = "pageConnection";
-            require ($rep . $vues['index']);
-            return;
-        }
+    }
 
-        $_SESSION['Utilisateur'] = $Utilisateur->Email;
-
-        $this->pagePrivee();
+    private function seDeconnecter(){
+        session_unset();
+        session_destroy();
+        $_SESSION=array();
+        $this->pageConnection();
     }
 
     private function pageInscription() {
@@ -252,6 +265,7 @@ class UtilisateurControleur
         if(Validation::val_inscription($Pseudo, $Email, $Mdp, $dataVueErreur)) {
             try {
                 $m->AjouterUtilisateur($Email, $Pseudo, $Mdp);
+                $_SESSION['Utilisateur'] = $Email;
             } catch (\Exception $e) {
                 $dataPageErreur['erreurTache'] = "Erreur non prise en charge : " . $e->getMessage();
                 $this->erreur();

@@ -11,7 +11,7 @@ class ListeTache
         $this->Titre=$Titre;
         if(!empty($Taches)) {
             foreach ($Taches as $value) {
-                $this->Taches[] = new Tache($value->Nom, $value->Effectue);
+                $this->Taches[] = new Tache($value->Id,$value->Nom, $value->Effectue);
             }
         }
     }

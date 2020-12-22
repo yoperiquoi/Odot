@@ -8,7 +8,6 @@ use \PDO;
 class UtilisateurGateway
 {
     private $con;
-    private $TU;
 
     public function __construct($c=null)
     {
@@ -20,17 +19,18 @@ class UtilisateurGateway
         }
     }
 
-    public function findUtilisateur(string $email,string $mdp): ?Utilisateur{
-        $query='SELECT * FROM Utilisateur where email=:email and mdp=:mdp';
-        $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR),':mdp' => array($mdp, PDO::PARAM_STR)));
+    public function findUtilisateur(string $email,string $mdp): bool{
+        $query='SELECT * FROM Utilisateur where Email=:email';
+        $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR)));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $this->TU= new Utilisateur($row["Email"],$row['Pseudonyme'],$row["Mdp"]);
+        if(isset($results[0]['Email'])){
+            return password_verify($mdp,$results[0]['Mdp']);
         }
-        return $this->TU;
+        else return false;
     }
 
     public function ajoutUtilisateur(string $email,string $pseudonyme,string $mdp){
+        $mdp=password_hash($mdp,PASSWORD_DEFAULT);
         $query='INSERT INTO UTILISATEUR VALUES(:email,:pseudonyme,:mdp)';
         $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR),':mdp' => array($mdp, PDO::PARAM_STR),':pseudonyme'=>(array($pseudonyme,PDO::PARAM_STR))));
     }

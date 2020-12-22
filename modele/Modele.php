@@ -43,7 +43,7 @@ class Modele
         $this->TacheGateway->cocherTache($Nom, $Liste);
     }
 
-    public function trouverUtilisateur(String $Email, String $Mdp) {
+    public function trouverUtilisateur(String $Email, String $Mdp) : bool {
         return $this->UtilisateurGateway->findUtilisateur($Email, $Mdp);
     }
 
@@ -63,8 +63,8 @@ class Modele
         $this->TacheGateway->ajoutTacheUtilisateur($Liste, $Nom,$Email);
     }
 
-    public function supprimerTacheUtilisateur(String $Nom) {
-        $this->TacheGateway->delTacheUtilisateur($Nom);
+    public function supprimerTacheUtilisateur(String $Nom,int $Id ) {
+        $this->TacheGateway->delTacheUtilisateur($Nom,$Id);
     }
 
     public function AjouterUtilisateur(String $Email, String $Pseudo, String $Mdp) {

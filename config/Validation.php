@@ -48,20 +48,20 @@ class Validation
     {
         if (!isset($mdp) || $mdp == "") {
             $dataVueErreur['erreurMdp'] = "pas de mot de passe";
-            $pseudo = "";
+            $mdp = "";
             return false;
         }
 
         if ($mdp != filter_var($mdp, FILTER_SANITIZE_STRING)) {
             $dataVueErreur['erreurMdp'] = "Tentative d'injection de code (attaque sécurité)";
-            $pseudo = "";
+            $mdp = "";
             return false;
         }
 
         $expression = '/^(([0-9A-Za-z-_.\'"àáâãäåçèéêëìíîïðòóôõöùúûüýÿ])+[[:space:]]*(\1)*)*$/';
         if (preg_match($expression, $mdp) != 1) {
             $dataVueErreur['erreurMdp'] = "Le mot de passe ne peut contenir que des lettres, chiffres (au moins un des deux) et les caractères spéciaux : \" ' - _ .";
-            $pseudo = "";
+            $mdp = "";
             return false;
         }
         return true;
@@ -168,6 +168,7 @@ class Validation
             $dataPageErreur[] = "La tâche à supprimer a un nom invalide";
             return false;
         }
+
 
         return true;
     }

@@ -20,5 +20,4 @@ $myLibLoader->register();
 
 //$cont = new controleur\Controleur();
 $cont = new controleur\FrontControleur();
-
 ?>

@@ -34,10 +34,14 @@
                 <a class="nav-link" href="?action=pagePrivee" tabindex="-1" aria-disabled="true">Privé</a>
             </li>
         </ul>
-        <label class="mr-sm-2 text-light mt-2">Invité</label>
-        <a href="?action=pageConnection" class="form-inline mt-2 mt-md-0" style="text-decoration: none">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se connecter</button>
+
+        <label class='mr-sm-2 text-light mt-2'>Invité</label>
+
+        <a href='?action=pageConnection' class='form-inline mt-2 mt-md-0' style='text-decoration: none'>
+                <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Se connecter</button>
         </a>
+
+
     </div>
 </nav>
 
@@ -84,7 +88,7 @@
                     <label class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
                     <form method='post' >
                         <input type='text' name='NomTache' value='$Tache' hidden>
-                        <button id='delete' name='action' value='supprimerTachePrivee' class='close justify-content-end col-sm1' aria-label='Close'>
+                        <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                         </button>
                     </form>

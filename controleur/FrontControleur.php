@@ -16,12 +16,11 @@ class FrontControleur
             "cocheTachePublique");
 
         $tabUser = array("pagePrivee", "ajouterListePrivee", "supprimerListePrivee", "ajouterTachePrivee", "supprimerTachePrivee",
-            "pageConnection", "seConnecter", "pageInscription", "creerUtilisateur");
+            "pageConnection", "seConnecter", "pageInscription", "creerUtilisateur","seDeconnecter");
 
         try {
-            $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
+            $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;;
             //TODO : Nettoyer l'action
-
             if(in_array($action, $tabUser)) {
                 if(!isset($_SESSION["Utilisateur"])) {
                     new UtilisateurControleur();
@@ -30,7 +29,7 @@ class FrontControleur
                     new UtilisateurControleur();
                     //TODO : Appelle controleur prive
                 }
-            } else if(in_array($action, $tabPublique) || $action == null) {
+            } else if(in_array($action, $tabPublique) || $action == NULL) {
                 new PubliqueControleur();
                 //TODO : Appelle controleur publique
             } else {
