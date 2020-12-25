@@ -11,7 +11,7 @@ $rep=__DIR__.'/../';
 //BD
 $user = 'root';
 $pass = '';
-$dsn = 'mysql:host=localhost;dbname=OdotTest';
+$dsn = 'mysql:host=localhost;dbname=Odot';
 
 //Vues
 

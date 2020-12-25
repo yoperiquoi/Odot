@@ -33,11 +33,11 @@ class ListeGateway
             $this->con->executeQuery($query,array(':id' => array($row['IdListePublique'], PDO::PARAM_INT)));
             $resultats=$this->con->getResults();
             foreach ($resultats as $row){
-                $query='SELECT Nom,Effectue FROM Tache where IdTache=:id';
+                $query='SELECT IdTache,Nom,Effectue FROM Tache where IdTache=:id';
                 $this->con->executeQuery($query,array(':id' => array($row['IdTache'], PDO::PARAM_INT)));
                 $Tache=$this->con->getResults();
                 foreach ($Tache as $value){
-                    $Taches[]=new Tache($value['Nom'],$value['Effectue']);
+                    $Taches[]=new Tache($value['IdTache'],$value['Nom'],$value['Effectue']);
                 }
             }
             if(empty($Taches)){
