@@ -32,19 +32,35 @@ class UtilisateurControleur
                     break;
 
                 case "ajouterListePrivee":
-                    $this->ajouterListePrivee();
+                    if(isset($_SESSION['Utilisateur'])){
+                        $this->ajouterListePrivee();
+                    }else{
+                        $this->pageConnection();
+                    }
                     break;
 
                 case "supprimerListePrivee":
-                    $this->supprimerListePrivee();
+                    if(isset($_SESSION['Utilisateur'])){
+                        $this->supprimerListePrivee();
+                    }else{
+                        $this->pageConnection();
+                    }
                     break;
 
                 case "ajouterTachePrivee":
-                    $this->ajouterTachePrivee();
+                    if(isset($_SESSION['Utilisateur'])){
+                        $this->ajouterTachePrivee();
+                    }else{
+                        $this->pageConnection();
+                    }
                     break;
 
                 case "supprimerTachePrivee":
-                    $this->supprimerTachePrivee();
+                    if(isset($_SESSION['Utilisateur'])){
+                        $this->supprimerTachePrivee();
+                    }else{
+                        $this->pageConnection();
+                    }
                     break;
 
                 case "pageConnection":
@@ -68,7 +84,11 @@ class UtilisateurControleur
                     break;
 
                 case "seDeconnecter" :
-                    $this->seDeconnecter();
+                    if (isset($_SESSION['Utilisateur'])) {
+                        $this->seDeconnecter();
+                    }else{
+                        $this->pageConnection();
+                    }
                     break;
 
                 //mauvaise action
@@ -90,13 +110,15 @@ class UtilisateurControleur
 
 
     private function pagePrivee() {
-        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom, $pseudo; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
             $this->erreur();
             return;
         }
+
+        $pseudo = $m->getPseudoUtilisateur($_SESSION['Utilisateur']);
 
         try {
             $ListesPrivee = $m->toutesLesListesUtilisateur($_SESSION['Utilisateur']);
@@ -109,7 +131,7 @@ class UtilisateurControleur
     }
 
     private function ajouterListePrivee() {
-        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         $Nom = $_POST['AjoutListe'];
@@ -125,7 +147,7 @@ class UtilisateurControleur
     }
 
     private function supprimerListePrivee() {
-        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur, $dataPageErreur; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         $Nom = $_POST['NomListe'];
@@ -152,7 +174,7 @@ class UtilisateurControleur
     }
 
     private function ajouterTachePrivee() {
-        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         $Nom = $_POST['Ajout'];
@@ -206,12 +228,12 @@ class UtilisateurControleur
     }
 
     private function pageConnection() {
-        global $rep, $vues; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur; // nécessaire pour utiliser les variables globales
         require($rep . $vues['pageConnexion']);
     }
 
     private function seConnecter() {
-        global $rep, $vues, $dataVueErreur, $dsn, $user, $pass; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         $Email = $_POST['inputEmail'];
@@ -243,10 +265,12 @@ class UtilisateurControleur
     }
 
     private function seDeconnecter(){
+        global $rep, $vues; // nécessaire pour utiliser les variables globales
         session_unset();
         session_destroy();
         $_SESSION=array();
-        $this->pageConnection();
+        $_REQUEST['action'] = null;
+        require ($rep . $vues['index']);;
     }
 
     private function pageInscription() {
@@ -262,15 +286,28 @@ class UtilisateurControleur
         $Mdp = $_POST['inputPassword'];
         $Pseudo = $_POST['inputPseudo'];
 
-        if(Validation::val_inscription($Pseudo, $Email, $Mdp, $dataVueErreur)) {
-            try {
-                $m->AjouterUtilisateur($Email, $Pseudo, $Mdp);
-                $_SESSION['Utilisateur'] = $Email;
-            } catch (\Exception $e) {
-                $dataPageErreur['erreurTache'] = "Erreur non prise en charge : " . $e->getMessage();
+        if(!Validation::val_inscription($Pseudo, $Email, $Mdp, $dataVueErreur)) {
+            $this->pageInscription();
+            return;
+        }
+
+        try {
+            $m->AjouterUtilisateur($Email, $Pseudo, $Mdp);
+            $_SESSION['Utilisateur'] = $Email;
+        } catch (PDOException $e) {
+            if($e->getCode() == 23000) {
+                $dataVueErreur['erreurEmail'] = "Cet email est déjà utilisé. Veuillez en sélectionner un autre.";
+                $this->pageInscription();
+                return;
+            } else {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
                 $this->erreur();
                 return;
             }
+        } catch (\Exception $e) {
+            $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+            $this->erreur();
+            return;
         }
 
         $this->pagePrivee();

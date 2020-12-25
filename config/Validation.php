@@ -13,7 +13,7 @@ class Validation
         }
 
         if ($pseudo != filter_var($pseudo, FILTER_SANITIZE_STRING)) {
-            $dataVueErreur['erreurNom'] = "Tentative d'injection de code (attaque sécurité)";
+            $dataVueErreur['erreurNom'] = "Pseudo invalide";
             $pseudo = "";
             return false;
         }

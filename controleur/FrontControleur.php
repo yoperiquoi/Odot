@@ -12,6 +12,10 @@ class FrontControleur
     {
         global $dataPageErreur, $rep, $vues; // nécessaire pour utiliser variables globales
 
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $tabPublique = array("ajouterListePublique", "supprimerListePublique", "ajouterTachePublique", "supprimerTachePublique",
             "cocheTachePublique");
 
@@ -24,18 +28,14 @@ class FrontControleur
             if(in_array($action, $tabUser)) {
                 if(!isset($_SESSION["Utilisateur"])) {
                     new UtilisateurControleur();
-                    //TODO : Connection
                 } else {
                     new UtilisateurControleur();
-                    //TODO : Appelle controleur prive
                 }
             } else if(in_array($action, $tabPublique) || $action == NULL) {
                 new PubliqueControleur();
-                //TODO : Appelle controleur publique
             } else {
                 $dataPageErreur['erreurAppel'] = "Erreur d'appel php";
                 require($rep . $vues['erreur']);
-                //TODO : Appel vue erreur
             }
 
         } catch (PDOException $e) {

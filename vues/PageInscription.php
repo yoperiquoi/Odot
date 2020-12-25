@@ -47,9 +47,15 @@
         <h1 class="h3 mb-3 font-weight-normal">Inscrivez-vous !</h1>
         <label for="inputEmail" class="sr-only">Adresse mail</label>
         <input type="email" name="inputEmail" class="form-control mb-1 todo-list-input" placeholder="Adresse mail" required autofocus/>
+        <p class="text-lg-left ml-2 text-danger font-weight-bold <?php print isset($dataVueErreur['erreurEmail']) ? "" : "d-none"; ?>" >
+            <?php print isset($dataVueErreur['erreurEmail']) ? $dataVueErreur['erreurEmail'] : ""; ?></p>
         <input type="text" name="inputPseudo" class="form-control mb-1 todo-list-input" placeholder="Pseudonyme" required autofocus/>
+        <p class="text-lg-left ml-2 text-danger font-weight-bold <?php print isset($dataVueErreur['erreurNom']) ? "" : "d-none"; ?>" >
+            <?php print isset($dataVueErreur['erreurNom']) ? $dataVueErreur['erreurNom'] : ""; ?></p>
         <label for="inputPassword" class="sr-only">Mot de passe</label>
         <input type="password" name="inputPassword" class="form-control mb-1 todo-list-input" placeholder="Mot de passe" required/>
+        <p class="text-lg-left ml-2 text-danger font-weight-bold <?php print isset($dataVueErreur['erreurMdp']) ? "" : "d-none"; ?>" >
+            <?php print isset($dataVueErreur['erreurMdp']) ? $dataVueErreur['erreurMdp'] : ""; ?></p>
         <button class="btn btn-lg btn-primary btn-block" name="action" value="creerUtilisateur" type="submit">S'incrire</button>
     </form>
 </main>

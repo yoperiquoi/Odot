@@ -27,14 +27,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link " href="?action">Publique</a>
             </li>
             <li class="nav-item active">
-                <a style="text-decoration: none" class="nav-link " href="#" tabindex="-1" aria-disabled="true">Privé<span class="sr-only">(current)</span></a>
+                <a style="text-decoration: none" class="nav-link " href="#" tabindex="-1" >Privé<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
+
+    <label class='mr-sm-2 text-light mt-2'><?php print $pseudo; ?></label>
+
     <a href="?action=seDeconnecter" class="form-inline mt-2 mt-md-0" style="text-decoration: none">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se Déconnecter</button>
     </a>

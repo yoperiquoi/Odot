@@ -62,7 +62,7 @@ class PubliqueControleur
     }
 
     private function pagePrincipale() {
-        global $rep, $vues, $dataPageErreur, $dataVueErreur, $dataVueErreurNom; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataPageErreur, $dataVueErreur, $dataVueErreurNom, $pseudo; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         try {
@@ -72,6 +72,11 @@ class PubliqueControleur
             $this->erreur();
             return;
         }
+
+        if(isset($_SESSION['Utilisateur']) && Validation::val_email($_SESSION['Utilisateur'], $autre)) {
+            $pseudo = $m->getPseudoUtilisateur($_SESSION['Utilisateur']);
+        }
+
         require($rep . $vues['pagePrincipale']);
     }
 

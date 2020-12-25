@@ -34,4 +34,14 @@ class UtilisateurGateway
         $query='INSERT INTO UTILISATEUR VALUES(:email,:pseudonyme,:mdp)';
         $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR),':mdp' => array($mdp, PDO::PARAM_STR),':pseudonyme'=>(array($pseudonyme,PDO::PARAM_STR))));
     }
+
+    public function getPseudoUtilisateur(string $email) {
+        $query='SELECT Pseudonyme FROM Utilisateur where Email=:email';
+        $this->con->executeQuery($query,array(':email' => array($email, PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        if(isset($results[0]['Pseudonyme'])){
+            return $results[0]['Pseudonyme'];
+        }
+        else return null;
+    }
 }

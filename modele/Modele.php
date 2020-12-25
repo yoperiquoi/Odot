@@ -75,4 +75,7 @@ class Modele
         $this->TacheGateway->cocherTacheUtilisateur($Nom, $Liste);
     }
 
+    public function getPseudoUtilisateur(String $Email) {
+        return $this->UtilisateurGateway->getPseudoUtilisateur($Email);
+    }
 }

@@ -35,10 +35,11 @@
             </li>
         </ul>
 
-        <label class='mr-sm-2 text-light mt-2'>Invité</label>
+        <label class='mr-sm-2 text-light mt-2'><?php print isset($pseudo) ? $pseudo : "Invité"; ?></label>
 
-        <a href='?action=pageConnection' class='form-inline mt-2 mt-md-0' style='text-decoration: none'>
-                <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Se connecter</button>
+        <a href='?action=<?php print isset($pseudo) ? "seDeconnecter" : "pageConnection"; ?>' class='form-inline mt-2 mt-md-0' style='text-decoration: none'>
+                <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>
+                    <?php print isset($pseudo) ? "Se Déconnecter" : "Se connecter"; ?></button>
         </a>
 
 
