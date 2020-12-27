@@ -11,7 +11,7 @@ class FrontControleur
     function __construct()
     {
         global $dataPageErreur, $rep, $vues, $nbListesPages, $nbPages; // nécessaire pour utiliser variables globales
-        $nbListesPages = 1;
+        $nbListesPages = 3;
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
