@@ -21,7 +21,11 @@
 <body class="bg">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Odot</a>
+
+    <a class="navbar-brand" href="#">
+        <img class="mr-2 mb-2" src="vues/Images/OdotShortcut.jpg" alt="" width="23" height="23">
+        Odot
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -123,4 +127,104 @@
 </main>
 
 </body>
+
+<footer class="d-flex justify-content-center mt-5 fixed-bottom">
+    <main role='main' class='w-100 bg-dark border d-flex justify-content-center pt-3'>
+        <nav aria-label="Page navigation navbar navbar-expand">
+            <ul class="pagination">
+                <?php
+                if($nbPages == null && $page == null) {
+                    $nbPages = 1;
+                    $page = 1;
+                }
+                ?>
+                <li class="page-item <?= ($page == 1) ? 'disabled' : '' ?>">
+                    <a class="page-link"
+                       href="?action&amp;page=<?= $page - 1 ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <?php
+                if($nbPages < 10){
+                    for($p = 1; $p <= $nbPages; $p++): ?>
+                        <li class="page-item <?= ($p == $page) ? 'active' : '' ?>">
+                            <a class="page-link" href="?action&amp;page=<?= $p ?>"><?= $p ?></a>
+                        </li>
+                    <?php
+                    endfor;
+                } else {
+                    for($p = 1; $p <= 3; $p++): ?>
+                        <li class="page-item <?= ($p == $page) ? 'active' : '' ?>">
+                            <a class="page-link" href="?action&amp;page=<?= $p ?>"><?= $p ?></a>
+                        </li>
+                    <?php
+                    endfor;
+
+                    if($page <= 3 || $page >= $nbPages - 2) {
+                        if($page == 3){
+                            ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?action&amp;page=<?= $page + 1 ?>"><?= $page + 1 ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                        <li class="page-item disabled"><a class="page-link " href="#">...</a></li>
+                        <?php
+                        if($page == $nbPages - 2){
+                            ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?action&amp;page=<?= $page - 1 ?>"><?= $page - 1 ?></a>
+                            </li>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        <?php
+                        if($page - 1 != 3) {
+                            ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="?action&amp;page=<?= $page - 1 ?>"><?= $page - 1 ?></a>
+                                </li>
+                            <?php
+                        }
+                        ?>
+                            <li class="page-item active">
+                                <a class="page-link" href="?action&amp;page=<?= $page ?>"><?= $page ?></a>
+                            </li>
+                        <?php
+                        if($page + 1 != $nbPages - 2) {
+                            ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?action&amp;page=<?= $page + 1 ?>"><?= $page + 1 ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        <?php
+                    }
+
+                    for($p = $nbPages - 2; $p <= $nbPages; $p++): ?>
+                        <li class="page-item  <?= ($p == $page) ? 'active' : '' ?>">
+                            <a class="page-link" href="?action&amp;page=<?= $p ?>"><?= $p ?></a>
+                        </li>
+                    <?php
+                    endfor;
+                }
+                ?>
+                <li class="page-item <?= ($page == $nbPages) ? 'disabled' : '' ?>">
+                    <a class="page-link"
+                       href="?action&amp;page=<?= $page + 1 ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+</footer>
 </html>

@@ -110,7 +110,7 @@ class UtilisateurControleur
 
 
     private function pagePrivee() {
-        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom, $pseudo; // nécessaire pour utiliser les variables globales
+        global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom, $pseudo, $nbListesPages, $nbPages, $page; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
         if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
@@ -120,8 +120,12 @@ class UtilisateurControleur
 
         $pseudo = $m->getPseudoUtilisateur($_SESSION['Utilisateur']);
 
+        $page = Validation::val_page(isset($_GET["page"]) ? $_GET["page"] : 1);
+        $nbPages = floor($m->nbListesUtilisateur($_SESSION['Utilisateur'])/$nbListesPages);
+        if($page < 1 || $page > $nbPages) $page = 1;
+
         try {
-            $ListesPrivee = $m->toutesLesListesUtilisateur($_SESSION['Utilisateur']);
+            $ListesPrivee = $m->toutesLesListesUtilisateur($_SESSION['Utilisateur'], $page, $nbListesPages);
         } catch (\Exception $e) {
             $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
             $this->erreur();

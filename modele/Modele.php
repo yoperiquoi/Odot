@@ -19,8 +19,12 @@ class Modele
         $this->ListeGateway = new ListeGateway();
     }
 
-    public function toutesLesListes() {
-        return $this->ListeGateway->findAllListes();
+    public function nbListes() {
+        return $this->ListeGateway->nbListes();
+    }
+
+    public function toutesLesListes(int $page, int $nbListesPages) {
+        return $this->ListeGateway->findAllListes($page, $nbListesPages);
     }
 
     public function ajouterListe(String $Nom) {
@@ -47,8 +51,12 @@ class Modele
         return $this->UtilisateurGateway->findUtilisateur($Email, $Mdp);
     }
 
-    public function toutesLesListesUtilisateur(String $session) {
-        return $this->ListeGateway->findAllListesUtilisateur($session);
+    public function nbListesUtilisateur(String $Email) {
+        return $this->ListeGateway->nbListesUtilisateur($Email);
+    }
+
+    public function toutesLesListesUtilisateur(String $session, int $page, int $nbListesPages) {
+        return $this->ListeGateway->findAllListesUtilisateur($session, $page, $nbListesPages);
     }
 
     public function ajouterListeUtilisateur(String $Nom, String $session) {

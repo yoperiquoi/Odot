@@ -22,9 +22,17 @@ class ListeGateway
         }
     }
 
-    public function findAllListes():array{
-        $query='SELECT * FROM ListesPublique';
+    public function nbListes() {
+        $query='SELECT count(*) FROM ListesPublique';
         $this->con->executeQuery($query,array());
+        $results=$this->con->getResults();
+        return $results[0]['count(*)'] == null ? 0 : $results[0]['count(*)'];
+    }
+
+    public function findAllListes(int $page, int $nbListesPages):array{
+        $query='SELECT * FROM ListesPublique LIMIT :debut,:nb';
+        $this->con->executeQuery($query,array(':debut' => array(($page-1)*$nbListesPages, PDO::PARAM_INT),
+        										':nb' => array($nbListesPages, PDO::PARAM_INT)));
         $results=$this->con->getResults();
         if($results==NULL)return array();
         foreach ($results as $row){
@@ -66,7 +74,7 @@ class ListeGateway
             $this->con->executeQuery($query, array(':IdTache' => array($value['IdTache'],PDO::PARAM_STR)));
             $results=$this->con->getResults();
             foreach ($results as $nom){
-                $this->delTache($nom['Nom']);
+                (new TacheGateway())->delTache($nom['Nom']);
             }
         }
         $query='DELETE FROM ListesPublique WHERE IdListePublique=:IdListe';
@@ -89,9 +97,18 @@ class ListeGateway
         $this->con->executeQuery($query,array(':id' => array($Id,PDO::PARAM_INT),':nom' => array($nom,PDO::PARAM_STR)));
     }
 
-    public function findAllListesUtilisateur(string $email):array{
-        $query='SELECT IdListeTache,Titre FROM ListesTaches WHERE Email=:email';
+    public function nbListesUtilisateur(string $email) {
+        $query='SELECT count(*) FROM ListesTaches WHERE Email=:email';
         $this->con->executeQuery($query,array(':email'=> array($email,PDO::PARAM_STR)));
+        $results=$this->con->getResults();
+        return $results[0]['count(*)'] == null ? 0 : $results[0]['count(*)'];
+    }
+
+    public function findAllListesUtilisateur(string $email, int $page, int $nbListesPages):array{
+        $query='SELECT IdListeTache,Titre FROM ListesTaches WHERE Email=:email  LIMIT :debut,:nb';
+        $this->con->executeQuery($query,array(':email'=> array($email,PDO::PARAM_STR),
+            ':debut' => array(($page-1)*$nbListesPages, PDO::PARAM_INT),
+            ':nb' => array($nbListesPages, PDO::PARAM_INT)));
         $results=$this->con->getResults();
         if($results==NULL)return array();
         foreach ($results as $row){
@@ -132,7 +149,7 @@ class ListeGateway
             $this->con->executeQuery($query, array(':IdTache' => array($value['IdTache'],PDO::PARAM_STR)));
             $results=$this->con->getResults();
             foreach ($results as $nom){
-                $this->delTache($nom['Nom']);
+                (new TacheGateway())->delTache($nom['Nom']);
             }
         }
         $query='DELETE FROM ListesTaches WHERE IdListeTache=:IdListe';

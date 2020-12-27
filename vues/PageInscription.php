@@ -22,7 +22,10 @@
 <body class="bg">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="?action">Odot</a>
+    <a class="navbar-brand" href="?action">
+        <img class="mr-2 mb-2" src="vues/Images/OdotShortcut.jpg" alt="" width="23" height="23">
+        Odot
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

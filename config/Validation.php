@@ -204,4 +204,13 @@ class Validation
         Validation::val_cocheTache($tache, $liste, $dataPageErreur);
         Validation::val_email($email, $dataPageErreur);
     }
+
+    public static function val_page(?int $page) {
+        if (!isset($page) || $page == 0) {
+            return 1;
+        }
+
+        if(!filter_var($page, FILTER_VALIDATE_INT)) return 1;
+        return $page;
+    }
 }
