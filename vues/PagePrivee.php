@@ -14,7 +14,7 @@
 
     <meta name="theme-color" content="#563d7c">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="vues/js/JSPagePrincipale.js"></script>
+    <script type="text/javascript" src="vues/js/JSPagePrivee.js"></script>
 
     <link href="vues/css/CSSPagePrivee.css" rel="stylesheet">
 </head>
@@ -89,8 +89,8 @@
                                         <input type='checkbox' class='ml-4 checkbox'>
                                         <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
                                         <form method='post'>
-                                            <input type='text' name='NomTache' value='$Tache' hidden>
                                             <input type='text' name='IdTache' value='$Tache->Id' hidden>
+                                            <input type='text' name='NomTache' value='$Tache' hidden>
                                             <button id='delete' name='action' value='supprimerTachePrivee' class='close justify-content-end col-sm1' aria-label='Close'>
                                                 <span aria-hidden='true'>&times;</span>
                                             </button>
@@ -102,8 +102,8 @@
                                         <input type='checkbox' class='ml-4 checkbox' checked>
                                         <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
                                         <form method='post'>
-                                            <input type='text' name='NomTache' value='$Tache' hidden>
                                             <input type='text' name='IdTache' value='$Tache->Id' hidden>
+                                            <input type='text' name='NomTache' value='$Tache' hidden>
                                             <button id='delete' name='action' value='supprimerTachePrivee' class='close justify-content-end col-sm1' aria-label='Close'>
                                                 <span aria-hidden='true'>&times;</span>
                                             </button>

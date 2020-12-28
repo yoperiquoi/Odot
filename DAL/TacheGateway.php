@@ -113,31 +113,19 @@ class TacheGateway
         return $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR),':id' => array($id, PDO::PARAM_INT)));
     }
 
-    public function cocherTacheUtilisateur(string $nom,int $liste){
-        $query='SELECT IdListeTaches from ListesTache WHERE titre=:liste';
-        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
-        $results=$this->con->getResults();
-        foreach ($results as $row){
-            $IdListe=$row['IdListePublic'];
-        }
-        $query='SELECT IdTache from ListeTachePrivee WHERE IdListeTachesPrivee=:idListe and IdTache=(SELECT IdTache from TachePrivee where nom=:nom)';
-        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT), ':nom' => array($nom, PDO::PARAM_STR)));
-        $results=$this->con->getResults();
-        foreach ($results as $row){
-            $IdListe=$row['IdTache'];
-        }
-        $query='SELECT Effectue FROM TachePrivee where IdTache=:idTache ';
-        $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+    public function cocherTacheUtilisateur(string $nom,int $id){
+        $query='SELECT Effectue FROM TachePrivee where IdTache=:idTache and Nom=:nom';
+        $this->con->executeQuery($query,array(':idTache' => array($id, PDO::PARAM_INT),':nom' => array($nom, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
             $Effectue=$row['Effectue'];
         }
         if($Effectue==1){
             $query='Update TachePrivee set Effectue=0 where IdTache=:IdTache';
-            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+            $this->con->executeQuery($query,array(':IdTache' => array($id, PDO::PARAM_INT)));
         }else{
             $query='Update TachePrivee set Effectue=1 where IdTache=:IdTache';
-            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+            $this->con->executeQuery($query,array(':IdTache' => array($id, PDO::PARAM_INT)));
         }
 
     }

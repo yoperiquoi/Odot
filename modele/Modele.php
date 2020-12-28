@@ -79,8 +79,8 @@ class Modele
         $this->UtilisateurGateway->ajoutUtilisateur($Email, $Pseudo, $Mdp);
     }
 
-    public function cocherTacheUtilisateur(String $Nom, String $Liste, String $Email) {
-        $this->TacheGateway->cocherTacheUtilisateur($Nom, $Liste);
+    public function cocherTacheUtilisateur(String $Nom, int $id) {
+        $this->TacheGateway->cocherTacheUtilisateur($Nom, $id);
     }
 
     public function getPseudoUtilisateur(String $Email) {

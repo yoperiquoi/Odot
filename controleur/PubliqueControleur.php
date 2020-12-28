@@ -217,8 +217,6 @@ class PubliqueControleur
 
         $Nom = $_GET["Tache"];
         $Liste= $_GET["Liste"];
-//        $Nom = "fqsdfqsdf";
-//        $Liste= "Artistique";
 
         if (Validation::val_cocheTache($Nom, $Liste, $dataPageErreur)) {
             try {

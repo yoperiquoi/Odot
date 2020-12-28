@@ -22,7 +22,7 @@ class FrontControleur
             "cocheTachePublique");
 
         $tabUser = array("pagePrivee", "ajouterListePrivee", "supprimerListePrivee", "ajouterTachePrivee", "supprimerTachePrivee",
-            "pageConnection", "seConnecter", "pageInscription", "creerUtilisateur","seDeconnecter");
+            "pageConnection", "seConnecter", "pageInscription", "creerUtilisateur","seDeconnecter","cocheTachePrivee");
 
         try {
             $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;;

@@ -90,6 +90,9 @@ class UtilisateurControleur
                         $this->pageConnection();
                     }
                     break;
+                case "cocheTachePrivee" :
+                    $this->cocheTachePrivee();
+                    break;
 
                 //mauvaise action
                 default:
@@ -311,6 +314,39 @@ class UtilisateurControleur
             $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
             $this->erreur();
             return;
+        }
+
+        $this->pagePrivee();
+    }
+
+    private function cocheTachePrivee() {
+        global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
+        $m = new Modele();
+
+        $Nom = $_GET["Tache"];
+        $Liste= $_GET["Liste"];
+        $Id= $_GET["Id"];
+
+
+        if (Validation::val_cocheTache($Nom, $Liste, $dataPageErreur)) {
+            try {
+                $m->cocherTacheUtilisateur($Nom, $Id);
+            } catch (PDOException $e) {
+                if($e->getCode() == 1) {
+                    $dataVueErreur['erreurListe'] = $e->getMessage();
+                    $_REQUEST['action'] = null;
+                    require($rep.$vues['index']);
+                    return;
+                } else {
+                    $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                    $this->erreur();
+                    return;
+                }
+            } catch (\Exception $e) {
+                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                $this->erreur();
+                return;
+            }
         }
 
         $this->pagePrivee();
