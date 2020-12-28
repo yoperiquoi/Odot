@@ -57,30 +57,26 @@ class TacheGateway
 
 
     public function cocherTache(string $nom,string $liste){
-        $query='SELECT IdListePublique from ListesPublique WHERE titre=:liste';
-        $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
+        $query='SELECT IdTache FROM Tache WHERE Nom=:nom';
+        $this->con->executeQuery($query, array(':nom' => array($nom,PDO::PARAM_STR)));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $IdListe=$row['IdListePublique'];
+        foreach ($results as $value){
+            $idTache=$value['IdTache'];
         }
-        $query='SELECT IdTache from Tache WHERE nom=:nom';
-        $this->con->executeQuery($query,array(':nom' => array($nom, PDO::PARAM_STR)));
-        $results=$this->con->getResults();
-        foreach ($results as $row){
-            $IdListe=$row['IdTache'];
-        }
+        if(!isset($idTache)) throw new \PDOException("Pas de tache avec ce nom, veuillez réessayer", 1);
         $query='SELECT Effectue FROM Tache where IdTache=:idTache ';
-        $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+        $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT)));
         $results=$this->con->getResults();
         foreach ($results as $row){
             $Effectue=$row['Effectue'];
         }
+        if(!isset($idTache)) throw new \PDOException("La tache n'a pas d'id, veuillez réessayer", 1);
         if($Effectue==1){
-            $query='Update Tache set Effectue=0 where IdTache=:IdTache';
-            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+            $query='Update Tache set Effectue=0 where IdTache=:idTache';
+            $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT)));
         }else{
-            $query='Update Tache set Effectue=1 where IdTache=:IdTache';
-            $this->con->executeQuery($query,array(':idTache' => array($IdListe, PDO::PARAM_INT)));
+            $query='Update Tache set Effectue=1 where IdTache=:idTache';
+            $this->con->executeQuery($query,array(':idTache' => array($idTache, PDO::PARAM_INT)));
         }
 
     }

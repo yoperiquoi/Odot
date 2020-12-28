@@ -215,19 +215,23 @@ class PubliqueControleur
         global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
-        $Nom = "Arroser les plantes";
+        $Nom = "sfqsdfq";
         $Liste= "Artistique";
-
-
-
 
         if (Validation::val_cocheTache($Nom, $Liste, $dataPageErreur)) {
             try {
                 $m->cocherTache($Nom, $Liste);
             } catch (PDOException $e) {
-                $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
-                $this->erreur();
-                return;
+                if($e->getCode() == 1) {
+                    $dataVueErreur['erreurListe'] = $e->getMessage();
+                    $_REQUEST['action'] = null;
+                    require($rep.$vues['index']);
+                    return;
+                } else {
+                    $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
+                    $this->erreur();
+                    return;
+                }
             } catch (\Exception $e) {
                 $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
                 $this->erreur();
