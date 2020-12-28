@@ -120,7 +120,7 @@ class UtilisateurControleur
         $pseudo = $m->getPseudoUtilisateur($_SESSION['Utilisateur']);
 
         $page = Validation::val_page(isset($_GET["page"]) ? $_GET["page"] : 1);
-        $nbPages = floor($m->nbListesUtilisateur($_SESSION['Utilisateur'])/$nbListesPages);
+        $nbPages = ceil($m->nbListesUtilisateur($_SESSION['Utilisateur'])/$nbListesPages);
         if($page < 1 || $page > $nbPages) $page = 1;
 
         try {

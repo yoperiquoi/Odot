@@ -66,7 +66,7 @@ class PubliqueControleur
         $m = new Modele();
 
         $page = Validation::val_page(isset($_GET["page"]) ? $_GET["page"] : 1);
-        $nbPages = floor($m->nbListes()/$nbListesPages);
+        $nbPages = ceil($m->nbListes()/$nbListesPages);
         if($page < 1 || $page > $nbPages) $page = 1;
 
         try {

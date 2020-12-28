@@ -1,3 +1,22 @@
+input[type="checkbox"]:checked+label.label-list {
+    text-decoration: line-through;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+input[type="checkbox"]:checked {
+    width: 18px;
+    height: 18px;
+    background: #405189;
+    border-width: 0;
+    top: 0;
+    left: 0
+}
+
 .bg {
     background-color: ghostwhite;
 }
+

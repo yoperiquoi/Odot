@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/html">
 
@@ -72,7 +71,7 @@
                         <span aria-hidden='true'>&times;</span>
                     </button>
             </form>
-            <h5 id='Liste' class='mt-3 ml-3 col-sm-10'>$ListePublique</h5>
+            <h5 class='mt-3 ml-3 col-sm-10'>$ListePublique</h5>
             <form  class='d-flex col-12 p-3' method='POST'>
                 <input type='hidden' name='Liste' value='$ListePublique'/>
                 <input type='text' name='Ajout' class='form-control todo-list-input mr-1' placeholder='Nouvelle Tache'>
@@ -92,8 +91,8 @@
                             print "
                                     <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
                                         <input type='checkbox' class='ml-4 checkbox'>
-                                        <label id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
-                                        <form method='post' >
+                                        <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
+                                        <form method='post' id='$Tache'>
                                             <input type='text' name='NomTache' value='$Tache' hidden>
                                             <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
                                                 <span aria-hidden='true'>&times;</span>
@@ -101,24 +100,20 @@
                                         </form>
                                     </li>";
                         } else {
-                            print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
-                                    <form method='post' >
-                                        <input type='text' name='NomTache' value='$Tache' hidden>
-                                        <button class='p-0 d-flex btn' name='action' value='cocheTachePublique'>
-                                            <input type='checkbox' class='ml-2 mt-2'>
-                                            <label class='mx-2 pt-1 label-list'>$Tache</label>
-                                        </button>
-                                    </form>
-                                    <form method='post' >
-                                    <input type='text' name='NomTache' value='$Tache' hidden>
-                                    <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm-1' aria-label='Close'>
-                                        <span aria-hidden='true'>&times;</span>
-                                    </button>
-                                    </form>
-                                    </li>
-                                    </ul>";
+                            print "
+                                    <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
+                                        <input type='checkbox' class='ml-4 checkbox' checked>
+                                        <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
+                                        <form method='post' id='$Tache'>
+                                            <input type='text' name='NomTache' value='$Tache' hidden>
+                                            <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
+                                                <span aria-hidden='true'>&times;</span>
+                                            </button>
+                                        </form>
+                                    </li>";
                         }
                     }
+                    print "</ul>";
                 }
                 print "</main>";
             }
@@ -130,7 +125,7 @@
 
 </body>
 
-<footer class="d-flex justify-content-center mt-5 fixed-bottom">
+<footer class="d-flex justify-content-center mt-5 position-absolute bottom-0 start-50 translate-middle-x w-100">
     <main role='main' class='w-100 bg-dark border d-flex justify-content-center pt-3'>
         <nav aria-label="Page navigation navbar navbar-expand">
             <ul class="pagination">

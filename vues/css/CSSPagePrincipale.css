@@ -1,6 +1,3 @@
-.label-list {
-}
-
 input[type="checkbox"]:checked+label.label-list {
     text-decoration: line-through;
 }

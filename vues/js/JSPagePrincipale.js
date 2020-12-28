@@ -2,8 +2,8 @@ $(document).ready(function() {
     var todoListItem = $('.todo-list');
 
     todoListItem.on('change', '.checkbox', function () {
-        var tache = $(this).closest("h5");
-        var liste = document.getElementById("Liste").innerText;
+        var tache = $(this).parents('li').find('label').attr('for');
+        var liste = $(this).parents('main').find('h5').html();
         alert(tache);
         alert(liste);
         $.ajax({
