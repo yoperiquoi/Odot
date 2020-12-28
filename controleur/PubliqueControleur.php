@@ -215,8 +215,10 @@ class PubliqueControleur
         global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
         $m = new Modele();
 
-        $Nom = "sfqsdfq";
-        $Liste= "Artistique";
+        $Nom = $_GET["Tache"];
+        $Liste= $_GET["Liste"];
+//        $Nom = "fqsdfqsdf";
+//        $Liste= "Artistique";
 
         if (Validation::val_cocheTache($Nom, $Liste, $dataPageErreur)) {
             try {

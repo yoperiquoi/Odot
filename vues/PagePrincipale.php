@@ -92,9 +92,9 @@
                                     <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
                                         <input type='checkbox' class='ml-4 checkbox'>
                                         <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
-                                        <form method='post' id='$Tache'>
+                                        <form method='post'>
                                             <input type='text' name='NomTache' value='$Tache' hidden>
-                                            <button id='delete' name='action' value='cocheTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
+                                            <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
                                                 <span aria-hidden='true'>&times;</span>
                                             </button>
                                         </form>
@@ -104,7 +104,7 @@
                                     <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
                                         <input type='checkbox' class='ml-4 checkbox' checked>
                                         <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
-                                        <form method='post' id='$Tache'>
+                                        <form method='post'>
                                             <input type='text' name='NomTache' value='$Tache' hidden>
                                             <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
                                                 <span aria-hidden='true'>&times;</span>
