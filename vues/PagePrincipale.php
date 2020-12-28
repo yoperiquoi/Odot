@@ -14,6 +14,8 @@
     <link rel="shortcut icon" type="image/jpg" href="vues/Images/OdotShortcut.jpg">
 
     <meta name="theme-color" content="#563d7c">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="vues/js/JSPagePrincipale.js"></script>
 
     <link href="vues/css/CSSPagePrincipale.css" rel="stylesheet">
 </head>
@@ -70,7 +72,7 @@
                         <span aria-hidden='true'>&times;</span>
                     </button>
             </form>
-            <h5 class='mt-3 ml-3 col-sm-10'>$ListePublique</h5>
+            <h5 id='Liste' class='mt-3 ml-3 col-sm-10'>$ListePublique</h5>
             <form  class='d-flex col-12 p-3' method='POST'>
                 <input type='hidden' name='Liste' value='$ListePublique'/>
                 <input type='text' name='Ajout' class='form-control todo-list-input mr-1' placeholder='Nouvelle Tache'>
@@ -88,33 +90,33 @@
                     foreach ($TachesPublique as $Tache) {
                         if ($Tache->Effectue == false) {
                             print "
-                <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
-                    <input type='checkbox' class='ml-4 checkbox'>
-                    <label class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
-                    <form method='post' >
-                        <input type='text' name='NomTache' value='$Tache' hidden>
-                        <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                        </button>
-                    </form>
-                </li>";
+                                    <li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
+                                        <input type='checkbox' class='ml-4 checkbox'>
+                                        <label id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
+                                        <form method='post' >
+                                            <input type='text' name='NomTache' value='$Tache' hidden>
+                                            <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
+                                                <span aria-hidden='true'>&times;</span>
+                                            </button>
+                                        </form>
+                                    </li>";
                         } else {
                             print "<li class='d-flex align-items-center p-3 my-3 border-bottom border-gray'>
-                    <form method='post' >
-                        <input type='text' name='NomTache' value='$Tache' hidden>
-                        <button class='p-0 d-flex btn' name='action' value='cocheTachePublique'>
-                            <input type='checkbox' class='ml-2 mt-2'>
-                            <label class='mx-2 pt-1 label-list'>$Tache</label>
-                        </button>
-                    </form>
-                    <form method='post' >
-                    <input type='text' name='NomTache' value='$Tache' hidden>
-                    <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm-1' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
-                    </form>
-                    </li>
-                    </ul>";
+                                    <form method='post' >
+                                        <input type='text' name='NomTache' value='$Tache' hidden>
+                                        <button class='p-0 d-flex btn' name='action' value='cocheTachePublique'>
+                                            <input type='checkbox' class='ml-2 mt-2'>
+                                            <label class='mx-2 pt-1 label-list'>$Tache</label>
+                                        </button>
+                                    </form>
+                                    <form method='post' >
+                                    <input type='text' name='NomTache' value='$Tache' hidden>
+                                    <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm-1' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                    </form>
+                                    </li>
+                                    </ul>";
                         }
                     }
                 }

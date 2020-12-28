@@ -1,16 +1,16 @@
-(function($) {
-    'use strict';
-    $(function() {
-        var todoListItem = $('.todo-list');
+$(document).ready(function() {
+    var todoListItem = $('.todo-list');
 
-        todoListItem.on('change', '.checkbox', function() {
-            if ($(this).attr('checked')) {
-                $(this).removeAttr('checked');
-            } else {
-                $(this).attr('checked', 'checked');
-            }
-            var tache = $(this).closest("label").text();
-            var liste = $(this).closest("h5").text();
-        });
+    todoListItem.on('change', '.checkbox', function () {
+        var tache = $(this).closest("h5");
+        var liste = document.getElementById("Liste").innerText;
+        alert(tache);
+        alert(liste);
+        $.ajax({
+            url: "vues/js/update.php",
+            type: "POST",
+            data: {Liste: liste,Tache: tache}
+        })
     });
-})(jQuery);
+});
+

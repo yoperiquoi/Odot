@@ -112,7 +112,6 @@ class UtilisateurControleur
     private function pagePrivee() {
         global $rep, $vues, $dataVueErreur, $dataPageErreur, $dataVueErreurNom, $pseudo, $nbListesPages, $nbPages, $page; // nécessaire pour utiliser les variables globales
         $m = new Modele();
-
         if(!Validation::val_email($_SESSION['Utilisateur'], $dataPageErreur)) {
             $this->erreur();
             return;
