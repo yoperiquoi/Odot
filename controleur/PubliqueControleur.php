@@ -40,6 +40,7 @@ class PubliqueControleur
                     break;
 
                 case "cocheTachePublique":
+                    $this->cocheTachePublique();
                     break;
 
                 //mauvaise action
@@ -212,14 +213,17 @@ class PubliqueControleur
 
     private function cocheTachePublique() {
         global $rep, $vues, $dataPageErreur; // nécessaire pour utiliser les variables globales
-
         $m = new Modele();
 
-        $Nom = $_POST['NomTache'];
+        $Nom = "Arroser les plantes";
+        $Liste= "Artistique";
 
-        if (Validation::val_cocheTache($Nom, $liste, $dataPageErreur)) {
+
+
+
+        if (Validation::val_cocheTache($Nom, $Liste, $dataPageErreur)) {
             try {
-                $m->cocherTache($Nom, $liste);
+                $m->cocherTache($Nom, $Liste);
             } catch (PDOException $e) {
                 $dataPageErreur[] = "Erreur non prise en charge : " . $e->getMessage();
                 $this->erreur();

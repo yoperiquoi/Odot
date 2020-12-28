@@ -94,7 +94,7 @@
                                         <label for='$Tache' id='Tache' class='ml-2 pt-1 label-list col-sm-10 tache'>$Tache</label>
                                         <form method='post' id='$Tache'>
                                             <input type='text' name='NomTache' value='$Tache' hidden>
-                                            <button id='delete' name='action' value='supprimerTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
+                                            <button id='delete' name='action' value='cocheTachePublique' class='close justify-content-end col-sm1' aria-label='Close'>
                                                 <span aria-hidden='true'>&times;</span>
                                             </button>
                                         </form>

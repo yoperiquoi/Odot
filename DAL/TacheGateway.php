@@ -57,14 +57,14 @@ class TacheGateway
 
 
     public function cocherTache(string $nom,string $liste){
-        $query='SELECT IdListePublic from ListesPublique WHERE titre=:liste';
+        $query='SELECT IdListePublique from ListesPublique WHERE titre=:liste';
         $this->con->executeQuery($query,array(':liste' => array($liste, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
-            $IdListe=$row['IdListePublic'];
+            $IdListe=$row['IdListePublique'];
         }
-        $query='SELECT IdTache from ListeTachePublic WHERE IdListe=:idListe and IdTache=(SELECT IdTache from Tache where nom=:nom)';
-        $this->con->executeQuery($query,array(':idListe' => array($IdListe, PDO::PARAM_INT),array(':nom' => array($nom, PDO::PARAM_STR))));
+        $query='SELECT IdTache from Tache WHERE nom=:nom';
+        $this->con->executeQuery($query,array(':nom' => array($nom, PDO::PARAM_STR)));
         $results=$this->con->getResults();
         foreach ($results as $row){
             $IdListe=$row['IdTache'];

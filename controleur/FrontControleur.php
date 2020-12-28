@@ -4,6 +4,7 @@
 namespace controleur;
 
 
+use modele\Modele;
 use \PDOException;
 
 class FrontControleur
