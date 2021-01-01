@@ -19,7 +19,7 @@ class UtilisateurControleur
         }
 
         try {
-            $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
+            $action = Validation::val_action($action);
 
             switch ($action) {
                 case NULL:

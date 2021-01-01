@@ -4,6 +4,7 @@
 namespace controleur;
 
 
+use config\Validation;
 use modele\Modele;
 use \PDOException;
 
@@ -25,8 +26,7 @@ class FrontControleur
             "pageConnection", "seConnecter", "pageInscription", "creerUtilisateur","seDeconnecter");
 
         try {
-            $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;;
-            //TODO : Nettoyer l'action
+            $action = Validation::val_action($action);
             if(in_array($action, $tabUser)) {
                 if(!isset($_SESSION["Utilisateur"])) {
                     new UtilisateurControleur();
