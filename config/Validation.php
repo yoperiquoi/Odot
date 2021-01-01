@@ -213,4 +213,10 @@ class Validation
         if(!filter_var($page, FILTER_VALIDATE_INT)) return 1;
         return $page;
     }
+
+    public static function val_action(?string &$action) : ?string {
+        $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
+        if($action == "") $action = NULL;
+        return filter_var($action, FILTER_SANITIZE_STRING);
+    }
 }

@@ -16,7 +16,7 @@ class PubliqueControleur
         global $dataPageErreur; // nécessaire pour utiliser variables globales
 
         try {
-            $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : NULL;
+            $action = Validation::val_action($action);
 
             switch ($action) {
                 case NULL:
