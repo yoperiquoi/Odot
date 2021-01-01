@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 25 déc. 2020 à 08:07
+-- Généré le : ven. 01 jan. 2021 à 14:15
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -33,14 +33,17 @@ CREATE TABLE IF NOT EXISTS `listespublique` (
   `Titre` varchar(40) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`IdListePublique`),
   UNIQUE KEY `Titre` (`Titre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `listespublique`
 --
 
 INSERT INTO `listespublique` (`IdListePublique`, `Titre`) VALUES
-(1, 'Artistique');
+(6, 'Cours'),
+(3, 'Jardinage'),
+(4, 'MÃ©nage'),
+(5, 'Vacances');
 
 -- --------------------------------------------------------
 
@@ -55,15 +58,17 @@ CREATE TABLE IF NOT EXISTS `listestaches` (
   `Titre` varchar(30) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`IdListeTache`,`Email`),
   KEY `FKEY5` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `listestaches`
 --
 
 INSERT INTO `listestaches` (`IdListeTache`, `Email`, `Titre`) VALUES
-(2, 'yoann_63115@hotmail.fr', 'Artistique'),
-(3, 'patrick.periquoi@wanadoo.fr', 'Artistique');
+(1, 'yoann_63115@hotmail.fr', 'Cours'),
+(2, 'yoann_63115@hotmail.fr', 'Sport'),
+(3, 'yoann_63115@hotmail.fr', 'Musique'),
+(4, 'yoann_63115@hotmail.fr', 'Cadeaux NoÃ«l');
 
 -- --------------------------------------------------------
 
@@ -84,7 +89,12 @@ CREATE TABLE IF NOT EXISTS `listetacheprivee` (
 --
 
 INSERT INTO `listetacheprivee` (`IdListeTachesPrivee`, `IdTache`) VALUES
-(2, 1);
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6);
 
 -- --------------------------------------------------------
 
@@ -100,6 +110,18 @@ CREATE TABLE IF NOT EXISTS `listetachepublic` (
   KEY `FKEY` (`IdTache`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+--
+-- Déchargement des données de la table `listetachepublic`
+--
+
+INSERT INTO `listetachepublic` (`IdListePublique`, `IdTache`) VALUES
+(3, 1),
+(3, 2),
+(4, 3),
+(4, 4),
+(5, 5),
+(5, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -109,11 +131,23 @@ CREATE TABLE IF NOT EXISTS `listetachepublic` (
 DROP TABLE IF EXISTS `tache`;
 CREATE TABLE IF NOT EXISTS `tache` (
   `IdTache` int(11) NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `Nom` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `Effectue` tinyint(1) NOT NULL,
   PRIMARY KEY (`IdTache`),
   UNIQUE KEY `Nom` (`Nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Déchargement des données de la table `tache`
+--
+
+INSERT INTO `tache` (`IdTache`, `Nom`, `Effectue`) VALUES
+(1, 'Arroser les plantes', 0),
+(2, 'Ramasser les feuilles', 1),
+(3, 'Passer aspirateur', 0),
+(4, 'Faire la poussiÃ¨re', 1),
+(5, 'VÃ©rifier voiture', 0),
+(6, 'Faire les valises', 0);
 
 -- --------------------------------------------------------
 
@@ -124,17 +158,22 @@ CREATE TABLE IF NOT EXISTS `tache` (
 DROP TABLE IF EXISTS `tacheprivee`;
 CREATE TABLE IF NOT EXISTS `tacheprivee` (
   `IdTache` int(11) NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `Nom` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `Effectue` tinyint(1) NOT NULL,
   PRIMARY KEY (`IdTache`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `tacheprivee`
 --
 
 INSERT INTO `tacheprivee` (`IdTache`, `Nom`, `Effectue`) VALUES
-(1, 'Passer aspirateur', 0);
+(1, 'Terminer projet php', 0),
+(2, 'Revoir le dernier contrÃ´le', 1),
+(3, 'Acheter cadenas', 1),
+(4, 'Refaire la licence', 0),
+(5, 'RÃ©viser morceau', 0),
+(6, 'Accorder guitare', 0);
 
 -- --------------------------------------------------------
 
@@ -155,8 +194,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`Email`, `Pseudonyme`, `Mdp`) VALUES
-('patrick.periquoi@wanadoo.fr', 'papafayo2', '$2y$10$iwF1k8teIP2d8s6m6uVjSuSVtCZGBc3ERoWFrrGphRZilPy2sPduu'),
-('yoann_63115@hotmail.fr', 'papafayo', '$2y$10$MyKczd3ND3z54.P7qf784e3nbBsrOMFrNnCvLG3xehbQlEhh56Oxm');
+('yoann_63115@hotmail.fr', 'yoperiquoi', '$2y$10$Mwnls18lewsIQv5PQI10weASlsofiI3bhSrc34hGXiPn5NDW.34DO');
 
 --
 -- Contraintes pour les tables déchargées

@@ -124,7 +124,7 @@
 
 </body>
 
-<footer class="d-flex justify-content-center mt-5 bottom-0">
+<footer class="d-flex justify-content-center  bottom-0 fixed-bottom">
     <main role='main' class='w-100 bg-dark border d-flex justify-content-center pt-3'>
         <nav aria-label="Page navigation navbar navbar-expand">
             <ul class="pagination">

@@ -10,7 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="BootStrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="vues/Images/OdotLogo.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="vues/Images/OdotShortCut.jpg">
 
 
     <meta name="theme-color" content="#563d7c">
