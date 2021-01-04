@@ -13,10 +13,6 @@ class UtilisateurControleur
     function __construct()
     {
         global $dataPageErreur; // nécessaire pour utiliser variables globales
-        // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
 
         try {
             $action = Validation::val_action($action);
@@ -326,7 +322,6 @@ class UtilisateurControleur
         $Nom = $_GET["Tache"];
         $Liste= $_GET["Liste"];
         $Id= $_GET["Id"];
-
 
         if (Validation::val_cocheTache($Nom, $Liste, $dataPageErreur)) {
             try {

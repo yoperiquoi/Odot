@@ -5,7 +5,6 @@ namespace controleur;
 
 
 use config\Validation;
-use modele\Modele;
 use \PDOException;
 
 class FrontControleur
@@ -15,6 +14,7 @@ class FrontControleur
         global $dataPageErreur, $rep, $vues, $nbListesPages, $nbPages; // nécessaire pour utiliser variables globales
         $nbListesPages = 3;
 
+        // on démarre ou reprend la session si necessaire (préférez utiliser un modèle pour gérer vos session ou cookies)
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }

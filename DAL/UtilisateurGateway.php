@@ -2,7 +2,6 @@
 
 namespace DAL;
 
-use DAL\metier\Utilisateur;
 use \PDO;
 
 class UtilisateurGateway

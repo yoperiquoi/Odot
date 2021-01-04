@@ -200,11 +200,6 @@ class Validation
         return true;
     }
 
-    public static function val_cocheTacheUtilisateur(?string &$tache, ?string &$liste, &$email, &$dataPageErreur) {
-        Validation::val_cocheTache($tache, $liste, $dataPageErreur);
-        Validation::val_email($email, $dataPageErreur);
-    }
-
     public static function val_page(?int $page) {
         if (!isset($page) || $page == 0) {
             return 1;

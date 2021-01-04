@@ -18,6 +18,5 @@ $myLibLoader->register();
 $myLibLoader = new SplClassLoader('modele', './');
 $myLibLoader->register();
 
-//$cont = new controleur\Controleur();
 $cont = new controleur\FrontControleur();
 ?>
