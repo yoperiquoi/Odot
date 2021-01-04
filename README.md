@@ -29,7 +29,10 @@ FrontControleur (création de la classe avc Yoann, séparation du premier contr�
 **Utilisation du site web :**
 
 La base de données du site à charger se trouve dans le dossier config.
-Des tâches ont été misent de base dans la partie publique, on peut alors navigué entre les différentes pages pour voir toutes les listes, on peut alors ajouter, supprimer et cocher les taches.
-Un utilisateur avec comme identifiant mail yoann_63115@hotmail.fr et le mot de passe "lephpcestbien" a été ajouté afin de voir la connection en place. L'inscription et l'ajout d'un utilisateur reste par ailleurs totalement possible.
+
+Des tâches ont été mises de base dans la partie publique, on peut alors naviguer entre les différentes pages pour voir toutes les listes, on peut alors ajouter, supprimer et cocher les tâches.
+
+Un utilisateur avec comme mail d'identification *yoann_63115@hotmail.fr* et le mot de passe *lephpcestbien* a été ajouté afin de voir la connection en place. L'inscription et l'ajout d'un utilisateur reste par ailleurs totalement possible.
+
 On retrouve les même interactions du côté privée.
 
